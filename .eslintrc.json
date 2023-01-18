@@ -1,0 +1,53 @@
+{
+  "root": true,
+  "ignorePatterns": [],
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
+  "env": {
+    "es6": true
+  },
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["tsconfig.json"],
+        "createDefaultProgram": true
+      },
+      "extends": ["plugin:prettier/recommended"],
+      "rules": {
+        "@typescript-eslint/consistent-type-definitions": "error",
+        "@typescript-eslint/dot-notation": "off",
+        "@typescript-eslint/explicit-member-accessibility": [
+          "off",
+          {
+            "accessibility": "explicit"
+          }
+        ],
+        "@typescript-eslint/no-inferrable-types": "off",
+        "@typescript-eslint/naming-convention": "off",
+        "@typescript-eslint/member-ordering": "off",
+        "@typescript-eslint/prefer-for-of": "off",
+        "@typescript-eslint/no-unused-expressions": "off",
+        "@typescript-eslint/no-shadow": ["error"],
+        "no-shadow": "off",
+        "guard-for-in": "off",
+        "arrow-parens": ["off", "always"],
+        "brace-style": "off",
+        "comma-dangle": ["error", "always-multiline"],
+        "id-blacklist": "off",
+        "id-match": "off",
+        "import/order": "off",
+        "no-bitwise": "off",
+        "no-underscore-dangle": "off",
+        "no-eval": "off"
+      }
+    },
+    {
+      "files": ["*.html"],
+      "excludedFiles": ["*inline-template-*.component.html"],
+      "extends": ["plugin:prettier/recommended"],
+      "rules": {}
+    }
+  ]
+}

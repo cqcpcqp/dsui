@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>shadow</title>
+  </head>
+  <body style="margin: 0">
+    <div id="host"></div>
+    <span>I'm not in the shadow DOM</span>
+    <button id="upper" type="button">将 span 元素转换为大写</button>
+    <button id="reload" type="button">重新加载</button>
+
+    <script>
+      const host = document.querySelector('#host');
+      const shadow = host.attachShadow({ mode: 'open' });
+      const span = document.createElement('span');
+      span.textContent = "I'm in the shadow DOM";
+      shadow.appendChild(span);
+
+      const upper = document.querySelector('button#upper');
+      upper.addEventListener('click', () => {
+        const spans = Array.from(document.querySelectorAll('span'));
+        for (const span of spans) {
+          span.textContent = span.textContent.toUpperCase();
+        }
+      });
+
+      const reload = document.querySelector('#reload');
+      reload.addEventListener('click', () => document.location.reload());
+    </script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "author": "cqcpcqp",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^3.2.45",
+    "dsui": "1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.7.1",
+    "typescript": "^4.9.3",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "vite": "^4.0.0"
+  },
+  "main": "index.js"
+}

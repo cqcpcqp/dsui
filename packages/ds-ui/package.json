@@ -1,0 +1,32 @@
+{
+  "name": "dsui",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "webpack",
+    "serve": "ds serve"
+  },
+  "main": "./index.ts",
+  "author": "cqcpcqp",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.6",
+    "css-loader": "^6.7.2",
+    "eslint": "8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "html-webpack-plugin": "^5.5.0",
+    "lerna": "^6.1.0",
+    "prettier": "^2.7.1",
+    "sass-loader": "^13.2.0",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.4.2",
+    "typescript": "^4.9.3",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.0"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.21",
+    "ds-core": "1.0.0"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "dsui",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "init": "yarn && cd example && yarn",
+    "dev": "cd example && yarn run dev"
+  },
+  "author": "cqcpcqp",
+  "license": "ISC",
+  "workspaces": [
+    "packages/*"
+  ]
+}
