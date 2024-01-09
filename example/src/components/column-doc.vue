@@ -1,8 +1,8 @@
 <script>
-import { DsColumn } from 'dsui';
+import { DsColumn, DsColumnItem } from 'dsui';
 
 export default {
-  components: { DsColumn },
+  components: { DsColumn, DsColumnItem },
   data() {
     return {};
   },
@@ -10,6 +10,12 @@ export default {
   mounted() {},
 };
 </script>
+
+<style>
+.column-doc {
+  padding: 0 10px 20px 0;
+}
+</style>
 
 <template>
   <div class="column-doc">
@@ -47,30 +53,17 @@ export default {
       <div style="height: 100px; background: deeppink"></div>
     </div>
 
-    <p>ds-column</p>
-
-    <ds-column :count="3" :rule="true" :gap="'5%'" style="border: solid deepskyblue">
-      <ds-square slot="ds-column-item" :size="100" :color="'deeppink'"></ds-square>
-      <ds-square slot="ds-column-item" :size="100" :color="'deeppink'"></ds-square>
-      <ds-square slot="ds-column-item" :size="100" :color="'deeppink'"></ds-square>
-    </ds-column>
-
     <p>count 3 / gap 20px</p>
 
-    <ds-column
-      :count="3"
-      :rule="true"
-      :gap="'20px'"
-      style="width: 300px; border: solid deepskyblue"
-    >
+    <ds-column :count="3" :rule="true" :gap="'20px'" style="border: solid deepskyblue">
       <ds-column-item>
-        <ds-square></ds-square>
+        <ds-square :size="100" :color="'deeppink'"></ds-square>
       </ds-column-item>
       <ds-column-item>
-        <ds-square></ds-square>
+        <ds-square :size="100" :color="'deeppink'"></ds-square>
       </ds-column-item>
       <ds-column-item>
-        <ds-square></ds-square>
+        <ds-square :size="100" :color="'deeppink'"></ds-square>
       </ds-column-item>
     </ds-column>
   </div>

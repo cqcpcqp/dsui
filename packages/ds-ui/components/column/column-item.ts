@@ -7,15 +7,15 @@ import { Component } from 'ds-core/decorators/component';
       <style>
         :host {
           break-inside: avoid;
+          display: block;
         }
       </style>
-      <slot name="ds-column-item"></slot>
     </template>
   `,
 })
 export class DsColumnItem extends HTMLElement {
   static get observedAttributes() {
-    return [];
+    return ['slot'];
   }
 
   shadow;
@@ -34,17 +34,15 @@ export class DsColumnItem extends HTMLElement {
   }
 
   connectedCallback() {
-    console.log(this.childNodes, 'childNode');
-    this.updateStyle();
+    this.setAttribute('slot', 'ds-column-item');
+    this.childNodes.forEach((_childNode) => {
+      this.shadow.appendChild(_childNode);
+    });
   }
 
   disconnectedCallback() {}
 
   adoptedCallback() {}
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    this.updateStyle();
-  }
-
-  updateStyle() {}
+  attributeChangedCallback(name, oldValue, newValue) {}
 }
