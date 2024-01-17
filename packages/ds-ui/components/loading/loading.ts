@@ -24,7 +24,12 @@ import { Component } from 'ds-core/decorators/component';
         stroke: #22a765;
       }
 
+      .disabled circle {
+        stroke: #b6bdd1;
+      }
+
       svg circle {
+        stroke-linecap: round;
         stroke-dasharray: 1, 200;
         stroke-dashoffset: 0;
         stroke-width: 10%;
@@ -86,10 +91,13 @@ export class DsLoading extends HTMLElement {
     const size = this.getAttribute('size');
     if (size === 'sm') {
       this.style.width = '12px';
+      this.style.height = '12px';
     } else if (size === 'md') {
       this.style.width = '18px';
+      this.style.height = '18px';
     } else if (size === 'lg') {
       this.style.width = '26px';
+      this.style.height = '26px';
     }
   }
 

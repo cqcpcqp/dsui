@@ -84,6 +84,13 @@ import { Component } from 'ds-core/decorators/component';
             cursor: not-allowed;
             box-shadow: none;
         }
+        button[is="ds-button"].loading {
+            background-color: #FAFBFC;
+            border-color: #FAFBFC;
+            color: #B6BDB1;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
         .button-icon {
             display: inline-block;
             width: 20px;
@@ -153,9 +160,12 @@ export class DsButton extends HTMLButtonElement {
 
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === 'loading') {
-      console.log(name, oldValue, newValue);
       const loading = document.createElement('ds-loading');
-      this.appendChild(loading);
+      this.classList.add('loading');
+      loading.setAttribute('size', 'md');
+      loading.setAttribute('color', 'disabled');
+      loading.setAttribute('style', 'margin-right: 4px');
+      this.insertBefore(loading, this.childNodes[0]);
     }
     this.updateStyle();
   }
