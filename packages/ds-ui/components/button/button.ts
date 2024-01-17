@@ -1,15 +1,5 @@
 import { Component } from 'ds-core/decorators/component';
 
-const makeIcon = (iconName: string) => {
-  const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  const iconUse: SVGUseElement = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-  iconUse.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#icon-' + iconName);
-  icon.classList.add('icon');
-  icon.classList.add('tui-btn-icon-left');
-  icon.appendChild(iconUse);
-  return icon;
-};
-
 @Component({
   select: 'ds-button',
   extends: 'button',
@@ -164,15 +154,8 @@ export class DsButton extends HTMLButtonElement {
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === 'loading') {
       console.log(name, oldValue, newValue);
-
-      // const svg = document.createElement('svg');
-      // svg.classList.add('icon');
-      // const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-      // use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#icon-loading');
-      // svg.appendChild(use);
-
-      const svg = makeIcon('loading');
-      this.appendChild(svg);
+      const loading = document.createElement('ds-loading');
+      this.appendChild(loading);
     }
     this.updateStyle();
   }

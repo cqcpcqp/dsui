@@ -1,22 +1,26 @@
 <script>
 export default {
   data() {
-    return {
-      direction: 'horizontal',
-    };
+    return {};
   },
 
   mounted() {},
 };
 </script>
 
+<style scoped></style>
+
 <template>
-  <div class="flex-doc">
-    <h1>Flex</h1>
-    <p>倾向于实现flex组件，不做space了。应该没有space能实现，但flex实现不了的场景</p>
+  <div class="loading-doc">
+    <h1>Loading</h1>
+
+    <p>
+      用svg来做loading，同时规避在组件库中集成图标库。不像angular component把这个组件
+      理解成process，而是单纯理解成正在loading的样式
+    </p>
 
     <fieldset>
-      <legend>Select a direction: </legend>
+      <legend>Select Color:</legend>
 
       <div>
         <input
@@ -44,5 +48,10 @@ export default {
 
       {{ direction }}
     </fieldset>
+
+    <ds-loading size="sm" color="primary"></ds-loading>
+    <ds-loading size="md" color="success"></ds-loading>
+    <ds-loading size="lg" color="primary"></ds-loading>
+    <ds-loading style="width: 50px; height: 50px" color="primary"></ds-loading>
   </div>
 </template>
