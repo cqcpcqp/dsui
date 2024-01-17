@@ -6,3 +6,4 @@ export * from './components/icon/icon';
 export * from './components/column/column';
 export * from './components/column/column-item';
 export * from './components/loading/loading';
+export * from './components/flex/flex';

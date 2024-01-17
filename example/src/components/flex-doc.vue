@@ -1,8 +1,11 @@
 <script>
+import { Square, DsFlex } from 'dsui';
+
 export default {
+  components: { Square, DsFlex },
   data() {
     return {
-      direction: 'horizontal',
+      direction: 'row',
     };
   },
 
@@ -16,7 +19,7 @@ export default {
     <p>倾向于实现flex组件，不做space了。应该没有space能实现，但flex实现不了的场景</p>
 
     <fieldset>
-      <legend>Select a direction: </legend>
+      <legend>Select a direction:</legend>
 
       <div>
         <input
@@ -24,8 +27,8 @@ export default {
           id="huey"
           name="drone"
           value="huey"
-          :checked="direction === 'horizontal'"
-          @input="direction = 'horizontal'"
+          :checked="direction === 'row'"
+          @input="direction = 'row'"
         />
         <label for="huey">horizontal</label>
       </div>
@@ -36,13 +39,20 @@ export default {
           id="dewey"
           name="drone"
           value="dewey"
-          :checked="direction === 'vertical'"
-          @input="direction = 'vertical'"
+          :checked="direction === 'column'"
+          @input="direction = 'column'"
         />
         <label for="dewey">vertical</label>
       </div>
 
       {{ direction }}
     </fieldset>
+
+    <ds-flex :direction="direction" style="border: 1px solid black; margin-top: 20px">
+      <ds-square slot="ds-flex-item" :size="100" :color="'deeppink'"></ds-square>
+      <ds-square slot="ds-flex-item" :size="100" :color="'deeppink'"></ds-square>
+      <ds-square slot="ds-flex-item" :size="100" :color="'deeppink'"></ds-square>
+      <ds-square slot="ds-flex-item" :size="100" :color="'deeppink'"></ds-square>
+    </ds-flex>
   </div>
 </template>

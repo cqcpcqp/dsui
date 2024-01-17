@@ -10,7 +10,15 @@ export default defineConfig({
       template: {
         compilerOptions: {
           isCustomElement: (tag) =>
-            ['ds-square', 'ds-button', 'ds-icon', 'ds-column', 'ds-column-item', 'ds-loading'].includes(tag),
+            [
+              'ds-square',
+              'ds-button',
+              'ds-icon',
+              'ds-column',
+              'ds-column-item',
+              'ds-loading',
+              'ds-flex',
+            ].includes(tag),
         },
       },
     }),
