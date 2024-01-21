@@ -7,9 +7,11 @@ import SquareDoc from '@/components/square-doc.vue';
 import ColumnDoc from '@/components/column-doc.vue';
 import FieldsetDoc from '@/components/fieldset-doc.vue';
 import LoadingDoc from '@/components/loading-doc.vue';
+import InputDoc from '@/components/input-doc.vue';
 
 export default {
   components: {
+    InputDoc,
     LoadingDoc,
     FieldsetDoc,
     GridDoc,
@@ -21,7 +23,7 @@ export default {
   },
   data() {
     return {
-      selected: 'flex',
+      selected: 'input',
     };
   },
 
@@ -62,6 +64,7 @@ export default {
     <column-doc v-else-if="selected === 'column'"></column-doc>
     <fieldset-doc v-else-if="selected === 'fieldset'"></fieldset-doc>
     <loading-doc v-else-if="selected === 'loading'"></loading-doc>
+    <input-doc v-else-if="selected === 'input'"></input-doc>
   </div>
 </template>
 

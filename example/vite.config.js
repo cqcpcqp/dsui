@@ -18,6 +18,7 @@ export default defineConfig({
               'ds-column-item',
               'ds-loading',
               'ds-flex',
+              'ds-input',
             ].includes(tag),
         },
       },

@@ -1,3 +1,4 @@
-.hello {
-    color: blue;
+:root {
+    --primary-color: blue;
+    --default-color: grey;
 }
