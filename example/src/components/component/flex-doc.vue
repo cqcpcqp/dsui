@@ -49,10 +49,10 @@ export default {
     </fieldset>
 
     <ds-flex :direction="direction" style="border: 1px solid black; margin-top: 20px">
-      <ds-square slot="ds-flex-item" :size="100" :color="'deeppink'"></ds-square>
-      <ds-square slot="ds-flex-item" :size="100" :color="'deeppink'"></ds-square>
-      <ds-square slot="ds-flex-item" :size="100" :color="'deeppink'"></ds-square>
-      <ds-square slot="ds-flex-item" :size="100" :color="'deeppink'"></ds-square>
+      <ds-square :size="100" :color="'deeppink'"></ds-square>
+      <ds-square :size="100" :color="'deeppink'"></ds-square>
+      <ds-square :size="100" :color="'deeppink'"></ds-square>
+      <ds-square :size="100" :color="'deeppink'"></ds-square>
     </ds-flex>
   </div>
 </template>

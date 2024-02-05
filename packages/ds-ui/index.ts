@@ -8,3 +8,5 @@ export * from './components/column/column-item';
 export * from './components/loading/loading';
 export * from './components/flex/flex';
 export * from './components/input/input';
+export * from './components/select/select';
+export * from './components/select/option';

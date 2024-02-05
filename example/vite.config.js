@@ -19,6 +19,8 @@ export default defineConfig({
               'ds-loading',
               'ds-flex',
               'ds-input',
+              'ds-select',
+              'ds-option',
             ].includes(tag),
         },
       },

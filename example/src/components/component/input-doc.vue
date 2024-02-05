@@ -19,17 +19,16 @@ export default {
     <p>输入文本内容</p>
 
     <ds-flex :direction="'column'">
-      <input slot="ds-flex-item" is="ds-input" placeholder="Basic Usage" v-model="v" />
+      <input is="ds-input" placeholder="Basic Usage" v-model="v" />
 
       <input
         type="text"
-        slot="ds-flex-item"
         placeholder="Basic Usage"
         style="height: 32px; line-height: 22px"
         v-model="v"
       />
 
-      <fieldset slot="ds-flex-item">
+      <fieldset>
         <legend>contenteditable div</legend>
         <div
           contenteditable
