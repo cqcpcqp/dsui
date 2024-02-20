@@ -11,8 +11,7 @@
 /bazel-out
 
 # dependencies
-/node_modules
-/example/node_modules
+node_modules
 
 # profiling files
 chrome-profiler-events.json
@@ -51,5 +50,10 @@ debug.log
 .DS_Store
 Thumbs.db
 
-
-yarn-error.log
+lib
+es
+umd
+tsc
+dist
+site_docs
+types

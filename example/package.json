@@ -11,8 +11,7 @@
   "author": "cqcpcqp",
   "license": "ISC",
   "dependencies": {
-    "vue": "^3.2.45",
-    "dsui": "1.0.0"
+    "vue": "^3.2.45"
   },
   "devDependencies": {
     "eslint": "8.22.0",

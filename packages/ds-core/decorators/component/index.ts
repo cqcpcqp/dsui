@@ -1,10 +1,3 @@
-export interface ComponentInfo {
-  select: string;
-  extends?: string;
-  style?: string;
-  template?: string;
-}
-
 const insertScript = (style: string) => {
   document.head.innerHTML += style;
 };
@@ -15,6 +8,13 @@ const insertTemplate = (template: string) => {
 
 // TODO(cqcpcqp) 这里用来控制template的注册，获取
 export const templateControl = {};
+
+interface ComponentInfo {
+  select: string;
+  extends?: string;
+  style?: string;
+  template?: string;
+}
 
 export const Component = (object: ComponentInfo) => {
   return (constructor: any) => {

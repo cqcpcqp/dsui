@@ -1,5 +1,6 @@
 import { Component } from 'ds-core/decorators/component';
 
+// 改写成tsx 势在必行啊
 @Component({
   select: 'ds-column',
   style: `

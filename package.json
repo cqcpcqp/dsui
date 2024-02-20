@@ -9,6 +9,7 @@
   },
   "author": "cqcpcqp",
   "license": "ISC",
+  "type": "module",
   "workspaces": [
     "packages/*"
   ]
