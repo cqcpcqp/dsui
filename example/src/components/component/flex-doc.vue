@@ -1,8 +1,8 @@
 <script>
-import { Square, DsFlex } from 'dsui';
+import { DsFlex } from 'dsui';
 
 export default {
-  components: { Square, DsFlex },
+  components: { DsFlex },
   data() {
     return {
       direction: 'row',

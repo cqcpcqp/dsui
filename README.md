@@ -27,15 +27,17 @@ Web components Components,
 ### 初始化
 
 ```bash
-npm run init
+yarn init
 ```
 
 ### 开发
 
 ```bash
-npm run dev
+yarn start
 ```
 
 ### 发布
 
 TODO
+- @Component中的template并不需要
+- 更新core对应的图<https://cqcpcqp.atlassian.net/wiki/spaces/FRON/whiteboard/149094403?atl_f=PAGETREE>

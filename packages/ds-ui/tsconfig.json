@@ -1,7 +1,9 @@
 {
   "extends": "../tsconfig.setting.json",
   "compilerOptions": {
-    "experimentalDecorators": true,
-    "composite": true,
+    "jsx": "react",
+    "jsxFactory": "Didact.createElement"
   },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules"]
 }

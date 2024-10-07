@@ -7,7 +7,7 @@ export default {
   components: { Doc, Headless, DsFlex },
   data() {
     return {
-      selectedMenu: 'headless',
+      selectedMenu: 'component',
     };
   },
 };

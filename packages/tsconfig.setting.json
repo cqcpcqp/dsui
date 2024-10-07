@@ -2,18 +2,18 @@
   "compileOnSave": false,
   "compilerOptions": {
     "module": "es2020",
-    "outDir": "./dist/out-tsc",
+    "target": "esnext",
     "baseUrl": "src",
     "importHelpers": true,
     "sourceMap": true,
     "declaration": false,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "downlevelIteration": true,
-    "skipLibCheck": true,
-    "target": "es2020",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2018", "dom"],
+    "lib": ["esnext", "dom"]
   }
 }

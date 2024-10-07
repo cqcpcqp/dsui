@@ -9,19 +9,7 @@ export default defineConfig({
     vue({
       template: {
         compilerOptions: {
-          isCustomElement: (tag) =>
-            [
-              'ds-square',
-              'ds-button',
-              'ds-icon',
-              'ds-column',
-              'ds-column-item',
-              'ds-loading',
-              'ds-flex',
-              'ds-input',
-              'ds-select',
-              'ds-option',
-            ].includes(tag),
+          isCustomElement: (tag) => tag.startsWith('ds'),
         },
       },
     }),

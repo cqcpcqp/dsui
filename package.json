@@ -5,10 +5,13 @@
   "private": true,
   "scripts": {
     "init": "yarn && cd example && yarn",
-    "dev": "cd example && yarn run dev"
+    "dev": "cd example && yarn run dev",
+    "build": "cd packages/ds-ui && yarn run dev",
+    "start": "concurrently 'yarn build' 'yarn dev'"
   },
   "author": "cqcpcqp",
   "license": "ISC",
+  "type": "module",
   "workspaces": [
     "packages/*"
   ]

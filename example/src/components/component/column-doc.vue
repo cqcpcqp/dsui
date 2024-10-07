@@ -1,8 +1,5 @@
 <script>
-import { DsColumn, DsColumnItem } from 'dsui';
-
 export default {
-  components: { DsColumn, DsColumnItem },
   data() {
     return {};
   },

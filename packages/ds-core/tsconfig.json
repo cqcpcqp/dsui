@@ -1,6 +1,8 @@
 {
   "extends": "../tsconfig.setting.json",
   "compilerOptions": {
-    "composite": true
-  }
+    "composite": true,
+    "declaration": true
+  },
+  "include": ["jsx/**/*.ts", "*.ts", "decorators/**/*.ts"]
 }
