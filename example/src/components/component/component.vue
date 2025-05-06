@@ -60,16 +60,16 @@ export default {
     </div>
 
     <div class="doc-container">
-      <button-doc v-show="selected === 'button'"></button-doc>
-      <flex-doc v-show="selected === 'flex'"></flex-doc>
-      <space-doc v-show="selected === 'space'"></space-doc>
-      <grid-doc v-show="selected === 'grid'"></grid-doc>
-      <square-doc v-show="selected === 'square'"></square-doc>
-      <column-doc v-show="selected === 'column'"></column-doc>
-      <fieldset-doc v-show="selected === 'fieldset'"></fieldset-doc>
-      <loading-doc v-show="selected === 'loading'"></loading-doc>
-      <input-doc v-show="selected === 'input'"></input-doc>
-      <select-doc v-show="selected === 'select'"></select-doc>
+      <button-doc v-if="selected === 'button'"></button-doc>
+      <flex-doc v-if="selected === 'flex'"></flex-doc>
+      <space-doc v-if="selected === 'space'"></space-doc>
+      <grid-doc v-if="selected === 'grid'"></grid-doc>
+      <square-doc v-if="selected === 'square'"></square-doc>
+      <column-doc v-if="selected === 'column'"></column-doc>
+      <fieldset-doc v-if="selected === 'fieldset'"></fieldset-doc>
+      <loading-doc v-if="selected === 'loading'"></loading-doc>
+      <input-doc v-if="selected === 'input'"></input-doc>
+      <select-doc v-if="selected === 'select'"></select-doc>
     </div>
   </ds-flex>
 </template>

@@ -39,5 +39,6 @@ yarn start
 ### 发布
 
 TODO
+- 把所有的compoent改造成tsx，然后变更dsui的package.json中的main
 - @Component中的template并不需要
 - 更新core对应的图<https://cqcpcqp.atlassian.net/wiki/spaces/FRON/whiteboard/149094403?atl_f=PAGETREE>

@@ -11,7 +11,7 @@ export default {
 <template>
   <div class="square-doc">
     <h1>Square</h1>
-    <ds-square style="margin-bottom: 20px"></ds-square>
+    <ds-square style="margin-bottom: 20px" :color="'red'"></ds-square>
     <ds-square></ds-square>
   </div>
 </template>
