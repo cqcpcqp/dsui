@@ -1,7 +1,13 @@
 import { DidactElement, Fiber, RenderContext } from './model';
 
+// TODO(cqcpcqp) 没有任何地方调delete方法 这个map岂不是永远不会有释放？
 const containerContextMap = new Map<HTMLElement, RenderContext>();
 
+/**
+ * 这里我是有疑问的，不过是一个简单的任务队列，这里还能做什么花活来性能优化？
+ * 难道React不是按照render来进行任务划分的？
+ */
+// TODO(cqcpcqp) should be named as taskQueue
 export const contextQueue: Fiber[] = [];
 
 function buildRenderContext(element: DidactElement, container: HTMLElement): RenderContext {

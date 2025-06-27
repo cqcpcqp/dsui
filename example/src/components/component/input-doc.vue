@@ -1,13 +1,18 @@
 <script>
-import { DsInput, DsFlex } from 'dsui';
+import { DsFlex } from 'dsui';
 export default {
-  components: { DsInput, DsFlex },
+  components: { DsFlex },
   data() {
     return {
-      v: 'Initial Value',
+      withInitialValue: 'Initial Value',
+      placeholderValue: '',
+      nullValue: null,
+      undefinedValue: undefined,
+      placeholder: 'placeholder',
+      size: 'md',
+      sizeList: ['sm', 'md', 'lg'],
     };
   },
-
   mounted() {},
 };
 </script>
@@ -18,15 +23,31 @@ export default {
 
     <p>输入文本内容</p>
 
-    <ds-flex :direction="'column'">
-      <input is="ds-input" placeholder="Basic Usage" v-model="v" />
+    <ds-flex gap="20px">
+      <button is="ds-button" v-for="s in sizeList" category="primary" @click="size = s">
+        {{ s }}
+      </button>
+    </ds-flex>
 
-      <input
-        type="text"
-        placeholder="Basic Usage"
-        style="height: 32px; line-height: 22px"
-        v-model="v"
-      />
+    <button is="ds-button" category="primary" @click="placeholder = 'placeholder changed'">
+      dynamic change placeholder
+    </button>
+
+    <ds-flex :direction="'column'" gap="20px">
+      <p>具有初始值的ds-input / {{ withInitialValue }}</p>
+      <ds-input :placeholder="placeholder" :size="size" v-model="withInitialValue"></ds-input>
+
+      <!-- <p>没有有初始值展示placeholder的ds-input/ {{ placeholderValue }}</p>
+      <ds-input placeholder="placeholder" v-model="placeholderValue" size="sm"></ds-input>
+
+      <p>nullValue / {{ nullValue }}</p>
+      <ds-input placeholder="placeholder" v-model="nullValue" size="sm"></ds-input>
+
+      <p>undefinedValue / {{ undefinedValue }}</p>
+      <ds-input placeholder="placeholder" v-model="undefinedValue" size="sm"></ds-input> -->
+
+      <p>以下为原生 文本输入功能</p>
+      <input type="text" style="height: 32px; line-height: 22px" v-model="withInitialValue" />
 
       <fieldset>
         <legend>contenteditable div</legend>
@@ -39,3 +60,9 @@ export default {
     </ds-flex>
   </div>
 </template>
+
+<style scoped>
+.ds-input {
+  width: 200px;
+}
+</style>

@@ -17,3 +17,10 @@ yarn run dev
 example vue3 + vite
 packages rollup
 publish lerna
+
+
+生成色值
+```bash
+cd packages/ds-ui
+yarn color-generate
+```

@@ -14,6 +14,10 @@ Web components Components,
 4. checkbox
 5. label
 
+### Related Doc
+
+[Web Components的最佳实践](https://web.dev/articles/custom-elements-best-practices?hl=zh-cn)
+
 ### Core
 
 ### headless

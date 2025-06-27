@@ -2,7 +2,9 @@ import { Fiber } from './model';
 import { updateDom } from './dom';
 import { getRenderContextByFiber } from './context';
 
-// commit fiber to dom
+/**
+ * commit fiber to dom
+ */
 export function commitWork(fiber: Fiber) {
   if (!fiber) return;
 
@@ -35,6 +37,7 @@ function commitDeletion(fiber, domParent) {
 export function commitRoot(scheduleCurrentRoot: Fiber) {
   const renderContext = getRenderContextByFiber(scheduleCurrentRoot);
   renderContext.deletions.forEach(commitWork);
+  // TODO(cqcpcqp) 这里为什么要commitWork child来着 直观上感觉应该直接commitWork wipRoot呢
   commitWork(renderContext.wipRoot.child);
   renderContext.currentRoot = renderContext.wipRoot;
   renderContext.wipRoot = null;

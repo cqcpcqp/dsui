@@ -28,3 +28,7 @@ npm run dev
 npm run build
 ```
 change to angular maybe
+
+## related doc
+
+[Vue与Web Components](https://cn.vuejs.org/guide/extras/web-components)

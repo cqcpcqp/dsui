@@ -9,6 +9,11 @@ export interface DidactElement {
   };
 }
 
+export interface Hook {
+  state: any;
+  queue: Function[];
+}
+
 export interface Fiber {
   /**
    * Fiber对应的实体dom
@@ -54,12 +59,13 @@ export interface Fiber {
    */
   effectTag?: 'UPDATE' | 'PLACEMENT' | 'DELETION';
 
-  hooks?: {
-    state: any;
-    queue: Function[];
-  }[];
+  hooks?: Hook[];
 }
 
+/**
+ * 应当是一次render对应一个RenderContext还是一个Element对应一个RenderContext?
+ * 现在的实现可以见render.ts，一次render对应一个RenderContext
+ */
 export interface RenderContext {
   wipRoot: Fiber;
   currentRoot: Fiber;

@@ -1,0 +1,48 @@
+@import './colors.scss';
+
+// 状态
+$brand-primary: $color-blue-6;
+$brand-info: $color-blue-6;
+$brand-danger: $color-red-6;
+$brand-warning: $color-orange-6;
+$brand-success: $color-green-6;
+$brand-default: $color-grey-6;
+
+// 默认边框
+$border-default: $color-grey-6;
+// 主色边框
+$border-primary: $color-blue-4;
+
+$bg-body: $color-grey-1;
+
+$input-md: 32px;
+
+$padding-xxlg: 24px;
+$padding-xlg: 20px;
+$padding-lg: 16px;
+$padding-md: 12px;
+$padding-sm: 8px;
+$padding-xsm: 4px;
+
+$margin-xxlg: 24px;
+$margin-xlg: 20px;
+$margin-lg: 16px;
+$margin-md: 12px;
+$margin-sm: 8px;
+$margin-xsm: 4px;
+
+$font-xlg: 24px;
+$font-lg: 20px;
+$font-base: 16px;
+$font-md: 14px;
+$font-sm: 12px;
+
+$line-xlg: 32px;
+$line-lg: 28px;
+$line-base: 24px;
+$line-md: 22px;
+$line-sm: 18px;
+
+$radius-md: 4px;
+$radius-sm: 2px;
+$radius-xsm: 2px;

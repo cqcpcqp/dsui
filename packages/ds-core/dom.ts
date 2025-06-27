@@ -10,6 +10,7 @@ const isNew = (prev, next) => (key) => prev[key] !== next[key];
 const isGone = (prev, next) => (key) => !(key in next);
 
 export function updateDom(dom, prevProps, nextProps) {
+  // TODO(cqcpcqp) 这里有个bug，对于function component 它们是没有dom的 但是updateDom这里还是在操作自身dom
   //Remove old or changed event listeners
   Object.keys(prevProps)
     .filter(isEvent)

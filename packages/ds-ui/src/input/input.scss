@@ -1,0 +1,55 @@
+@import '../styles/util.scss';
+
+.input-group {
+  display: flex;
+
+  input {
+    flex-grow: 1;
+    outline: none;
+    border-radius: $radius-md;
+    border: 1px solid $border-default;
+    background-color: $bg-body;
+    display: inline-block;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 32px;
+    padding: $padding-xsm $padding-sm;
+    line-height: $line-md;
+    font-size: $font-md;
+    color: #060a26;
+    -webkit-appearance: none;
+  }
+
+  input:hover {
+    border: 1px solid $border-primary !important;
+  }
+
+  input:focus-visible {
+    border: 1px solid $border-primary !important;
+  }
+}
+
+// 因为shadow dom隔绝了外部CSS，无法使用全局的样式变量，所以reset.scss中的代码都不奏效，reset相关可能必须要写在基类或者装饰器中
+// 或者就像当前这样，直接写在每个组件的scss中，缺点是无法复用，优点还是隔离，隔离带来的好处就是代码量其实变小了。
+// 不对 可能根本就不需要reset.scss
+:host * {
+  box-sizing: border-box;
+}
+
+:host([size='sm']) {
+  .input-group input {
+    min-height: 26px;
+    padding: 0 $padding-sm;
+    line-height: $line-sm;
+    font-size: $font-sm;
+  }
+}
+
+:host([size='lg']) {
+  .input-group input {
+    min-height: 40px;
+    padding: $padding-xsm $padding-md;
+    line-height: $line-base;
+    font-size: $font-base;
+  }
+}

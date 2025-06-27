@@ -4,7 +4,20 @@ import { contextQueue } from './context';
 import { commitRoot } from './commit';
 
 let nextUnitOfWork: Fiber;
+
+/**
+ * current root fiber under workLoop, when contextQueue is empty, it will be null
+ */
 let currentRoot: Fiber;
+
+export function getCurrentRoot(): Fiber {
+  return currentRoot;
+}
+
+export function jumpQueue(root: Fiber) {
+  nextUnitOfWork = root;
+  currentRoot = root;
+}
 
 export function workLoop(deadline) {
   let shouldYield = false;
@@ -16,7 +29,7 @@ export function workLoop(deadline) {
 
   if (!nextUnitOfWork) {
     if (currentRoot) {
-      // 怀疑commitRoot函数执行时间很容易超出idle period
+      // Suspect the execution time of commitRoot function is likely to exceed the idle period
       commitRoot(currentRoot);
 
       currentRoot = null;

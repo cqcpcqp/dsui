@@ -34,7 +34,6 @@ export default class Square extends HTMLElement {
   }
 
   connectedCallback() {
-    console.log('connectedCallback');
     Didact.render(this.render(), this.shadow);
   }
 
@@ -42,9 +41,7 @@ export default class Square extends HTMLElement {
 
   adoptedCallback() {}
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    console.log('attributeChangedCallback', name, oldValue, newValue);
-  }
+  attributeChangedCallback(name, oldValue, newValue) {}
 
   render() {
     return <CounterSquare />;

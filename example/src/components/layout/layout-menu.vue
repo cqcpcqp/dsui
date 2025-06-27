@@ -1,10 +1,11 @@
 <script>
 import Doc from '@/components/component/component.vue';
 import Headless from '@/components/headless/headless.vue';
+import Guide from '@/components/guide/guide.vue';
 import { DsFlex } from 'dsui';
 
 export default {
-  components: { Doc, Headless, DsFlex },
+  components: { Doc, Headless, Guide, DsFlex },
   data() {
     return {
       selectedMenu: 'component',
@@ -38,7 +39,12 @@ export default {
             />
           </g>
         </svg>
-        <span>Guide</span>
+        <span
+          :class="{ active: selectedMenu === 'guide' }"
+          class="menu"
+          @click="selectedMenu = 'guide'"
+          >Guide</span
+        >
         <span
           :class="{ active: selectedMenu === 'component' }"
           class="menu"
@@ -55,6 +61,7 @@ export default {
       <span>Github</span>
     </ds-flex>
 
+    <guide v-show="selectedMenu === 'guide'"></guide>
     <doc v-show="selectedMenu === 'component'"></doc>
     <headless v-show="selectedMenu === 'headless'"></headless>
   </ds-flex>

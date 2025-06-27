@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      selected: 'square',
+      selected: 'input',
     };
   },
 

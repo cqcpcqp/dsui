@@ -64,5 +64,3 @@
       s();
     }
   })(window);
-
-console.log('icon font loaded');

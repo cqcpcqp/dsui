@@ -1,12 +1,14 @@
 import { getRenderContextByFiber } from './context';
 import { Fiber, DidactElement } from './model';
 
-// reconcile old fiber with new elements
+/**
+ * reconcile old fiber with new elements
+ */
 export function reconcileChildren(wipFiber: Fiber, elements: DidactElement[]) {
   const { deletions } = getRenderContextByFiber(wipFiber);
 
   let index = 0;
-  let oldFiber = wipFiber.alternate && wipFiber.alternate.child;
+  let oldFiber = wipFiber.alternate?.child;
   let prevSibling = null;
 
   while (index < elements.length || oldFiber != null) {
