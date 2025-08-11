@@ -1,0 +1,17 @@
+@import '../styles/util.scss';
+
+.select-option {
+  padding: $padding-xsm $padding-sm;
+
+  &:hover {
+    background-color: $bg-hover;
+  }
+}
+
+:host * {
+  box-sizing: border-box;
+}
+
+:host {
+  cursor: pointer;
+}

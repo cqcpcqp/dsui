@@ -19,10 +19,13 @@ export function commitWork(fiber: Fiber) {
   } else if (fiber.effectTag === 'UPDATE') {
     updateDom(fiber.dom, fiber.alternate.props, fiber.props);
   } else if (fiber.effectTag === 'DELETION') {
-    commitDeletion(fiber.dom, parentDom);
+    commitDeletion(fiber, parentDom);
   }
 
-  commitWork(fiber.child);
+  // If Fiber needs to be deleted, its children nodes do not need to be committed
+  if (fiber.effectTag !== 'DELETION') {
+    commitWork(fiber.child);
+  }
   commitWork(fiber.sibling);
 }
 
@@ -36,6 +39,7 @@ function commitDeletion(fiber, domParent) {
 
 export function commitRoot(scheduleCurrentRoot: Fiber) {
   const renderContext = getRenderContextByFiber(scheduleCurrentRoot);
+  // TODO(cqcpcqp) 这里对deletions的commit难道不是跟下面的commitWork重复了？
   renderContext.deletions.forEach(commitWork);
   // TODO(cqcpcqp) 这里为什么要commitWork child来着 直观上感觉应该直接commitWork wipRoot呢
   commitWork(renderContext.wipRoot.child);

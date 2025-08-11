@@ -11,7 +11,7 @@ const isDev = process.env.NODE_ENV === 'development';
 const option = {
   watch: isDev
     ? {
-        include: ['src/**', '../ds-core/**'],
+        include: ['src/**', '../ds-core/**', '../ds-headless/**'],
         exclude: ['node_modules/**', '../ds-core/node_modules/**'],
       }
     : false,

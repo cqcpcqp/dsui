@@ -33,7 +33,14 @@ export function updateDom(dom, prevProps, nextProps) {
     .filter(isProperty)
     .filter(isNew(prevProps, nextProps))
     .forEach((name) => {
-      dom[name] = nextProps[name];
+      if (name === 'style' && typeof nextProps[name] === 'object') {
+        const styleObj = nextProps[name];
+        Object.keys(styleObj).forEach((styleName) => {
+          dom.style[styleName] = styleObj[styleName];
+        });
+      } else {
+        dom[name] = nextProps[name];
+      }
     });
 
   // Add event listeners

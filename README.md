@@ -20,6 +20,12 @@ Web components Components,
 
 ### Core
 
+注意，我们不是要开发一个类似react或者preact的玩意出来，我们只是为了
+1. 能够对开发提供便利
+才实现了这个core，这个core应当仅仅为dsui服务
+
+这就是为什么ds-core不会去实现ref / context api这样的功能。我们希望dsui的重心是在web component上。
+
 ### headless
 
 提供一些朴实的业务常见逻辑

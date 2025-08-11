@@ -1,0 +1,65 @@
+@import '../styles/util.scss';
+
+.select-group {
+  display: flex;
+
+  input {
+    flex-grow: 1;
+    outline: none;
+    border-radius: $radius-md;
+    border: 1px solid $border-default;
+    background-color: $bg-body;
+    display: inline-block;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 32px;
+    padding: $padding-xsm $padding-sm;
+    line-height: $line-md;
+    font-size: $font-md;
+    color: #060a26;
+    -webkit-appearance: none;
+    cursor: pointer;
+  }
+
+  input:hover {
+    border: 1px solid $border-primary !important;
+  }
+
+  input:focus-visible {
+    border: 1px solid $border-primary !important;
+  }
+}
+
+.select-dropdown {
+  position: fixed;
+  z-index: 4;
+  height: 200px;
+  background: #ffffff;
+  border: 1px solid $border-default;
+  border-radius: $radius-md;
+  overflow-y: auto;
+  line-height: $line-md;
+  font-size: $font-md;
+}
+
+:host * {
+  box-sizing: border-box;
+}
+
+:host([size='sm']) {
+  .select-group input {
+    min-height: 26px;
+    padding: 0 $padding-sm;
+    line-height: $line-sm;
+    font-size: $font-sm;
+  }
+}
+
+:host([size='lg']) {
+  .select-group input {
+    min-height: 40px;
+    padding: $padding-xsm $padding-md;
+    line-height: $line-base;
+    font-size: $font-base;
+  }
+}

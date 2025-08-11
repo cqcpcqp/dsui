@@ -27,6 +27,30 @@ import { DidactElement } from '../model';
  *   Didact.createElement(DsInput, { value: this.inputValue }),
  *   this.dsInput()
  * );
+ *
+ * jsx
+ * <div className="select-group">
+ *  <input
+ *    value={this.value}
+ *    onInput={handleChange}
+ *    placeholder={this.getAttribute('placeholder') || ''}
+ *  ></input>
+ * {this._isOpen && (
+ *  <SelectDropdown>
+ *    <slot></slot>
+ *  </SelectDropdown>
+ * )}
+ * </div>
+ * 
+ * 
+ * js
+ * Didact.createElement("div", { className: "select-group" }, 
+ *  Didact.createElement("input", { value: this.value, onInput: handleChange, placeholder: this.getAttribute('placeholder') || '' }),
+ *    this._isOpen && (Didact.createElement(SelectDropdown, null, 
+ *      Didact.createElement("slot", null)
+ *    )
+ *  )
+ * )
  */
 export function createElement(type, props, ...children): DidactElement {
   return {
