@@ -19,28 +19,37 @@ export function jumpQueue(root: Fiber) {
   currentRoot = root;
 }
 
+function next() {
+  if (contextQueue.length) {
+    const nextRoot = contextQueue.shift();
+
+    nextUnitOfWork = nextRoot;
+    currentRoot = nextRoot;
+  }
+}
+
 export function workLoop(deadline) {
   let shouldYield = false;
 
-  while (nextUnitOfWork && !shouldYield) {
-    nextUnitOfWork = performUnitOfWork(nextUnitOfWork);
-    shouldYield = deadline.timeRemaining() < 1;
+  if (!nextUnitOfWork) {
+    next();
   }
 
-  if (!nextUnitOfWork) {
-    if (currentRoot) {
-      // Suspect the execution time of commitRoot function is likely to exceed the idle period
-      commitRoot(currentRoot);
+  while (nextUnitOfWork && !shouldYield) {
+    nextUnitOfWork = performUnitOfWork(nextUnitOfWork);
 
-      currentRoot = null;
+    if (!nextUnitOfWork) {
+      if (currentRoot) {
+        // Suspect the execution time of commitRoot function is likely to exceed the idle period
+        commitRoot(currentRoot);
+
+        currentRoot = null;
+      }
+
+      next();
     }
 
-    if (contextQueue.length) {
-      const nextRoot = contextQueue.shift();
-
-      nextUnitOfWork = nextRoot;
-      currentRoot = nextRoot;
-    }
+    shouldYield = deadline.timeRemaining() < 1;
   }
 
   requestIdleCallback(workLoop);
