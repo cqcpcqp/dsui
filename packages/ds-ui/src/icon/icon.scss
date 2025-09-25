@@ -1,0 +1,48 @@
+@import '../styles/util.scss';
+
+:host * {
+  box-sizing: border-box;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+:host(.ds-icon-primary) ::slotted(svg) {
+  fill: $brand-primary;
+}
+
+:host(.ds-icon-danger) ::slotted(svg) {
+  fill: $brand-danger;
+}
+
+:host(.ds-icon-warning) ::slotted(svg) {
+  fill: $brand-warning;
+}
+
+:host(.ds-icon-success) ::slotted(svg) {
+  fill: $brand-success;
+}
+
+:host(.ds-icon-default) ::slotted(svg) {
+  fill: $brand-default;
+}
+
+:host(.ds-size-sm) ::slotted(svg) {
+  width: $icon-sm;
+  height: $icon-sm;
+}
+
+:host(.ds-size-md) ::slotted(svg) {
+  width: $icon-md;
+  height: $icon-md;
+}
+
+:host(.ds-size-lg) ::slotted(svg) {
+  width: $icon-lg;
+  height: $icon-lg;
+}

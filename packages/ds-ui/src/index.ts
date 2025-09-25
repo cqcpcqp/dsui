@@ -4,6 +4,7 @@ import DsColumnItem from './column/column-item';
 import DsInput from './input/input';
 import DsSelect from './select/select';
 import DsOption from './select/option';
+import DsIcon from './icon/icon';
 
 export default {
   Square,
@@ -12,4 +13,5 @@ export default {
   DsInput,
   DsSelect,
   DsOption,
+  DsIcon,
 };

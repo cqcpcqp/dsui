@@ -9,6 +9,7 @@ import FieldsetDoc from '@/components/component/fieldset-doc.vue';
 import LoadingDoc from '@/components/component/loading-doc.vue';
 import InputDoc from '@/components/component/input-doc.vue';
 import SelectDoc from '@/components/component/select-doc.vue';
+import IconDoc from '@/components/component/icon-doc.vue';
 import { DsFlex } from 'dsui';
 
 export default {
@@ -23,11 +24,12 @@ export default {
     SquareDoc,
     ColumnDoc,
     SelectDoc,
+    IconDoc,
     DsFlex,
   },
   data() {
     return {
-      selected: 'select',
+      selected: 'icon',
     };
   },
 
@@ -57,6 +59,7 @@ export default {
       <div :class="{ active: selected === 'fieldset' }" @click="selected = 'fieldset'">
         Fieldset
       </div>
+      <div :class="{ active: selected === 'icon' }" @click="selected = 'icon'">Icon</div>
     </div>
 
     <div class="doc-container">
@@ -70,6 +73,7 @@ export default {
       <loading-doc v-if="selected === 'loading'"></loading-doc>
       <input-doc v-if="selected === 'input'"></input-doc>
       <select-doc v-if="selected === 'select'"></select-doc>
+      <icon-doc v-if="selected === 'icon'"></icon-doc>
     </div>
   </ds-flex>
 </template>
