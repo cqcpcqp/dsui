@@ -2,13 +2,18 @@
 
 .select-group {
   display: flex;
+  border-radius: $radius-md;
+  border: 1px solid $border-default;
+  background-color: $bg-body;
+  align-items: center;
+  padding-right: $padding-sm;
 
   input {
     flex-grow: 1;
+    width: 0;
     outline: none;
+    border: none;
     border-radius: $radius-md;
-    border: 1px solid $border-default;
-    background-color: $bg-body;
     display: inline-block;
     align-items: center;
     justify-content: flex-start;
@@ -21,11 +26,11 @@
     cursor: pointer;
   }
 
-  input:hover {
+  &:hover {
     border: 1px solid $border-primary !important;
   }
 
-  input:focus-visible {
+  &:focus-visible {
     border: 1px solid $border-primary !important;
   }
 }
@@ -33,13 +38,22 @@
 .select-dropdown {
   position: fixed;
   z-index: 4;
-  height: 200px;
+  max-height: 200px;
   background: #ffffff;
   border: 1px solid $border-default;
   border-radius: $radius-md;
   overflow-y: auto;
   line-height: $line-md;
   font-size: $font-md;
+}
+
+.select-arrow {
+  vertical-align: -0.15em;
+  fill: $brand-default;
+  overflow: hidden;
+  flex-shrink: 0;
+  width: $icon-sm;
+  height: $icon-sm;
 }
 
 :host * {
@@ -53,6 +67,10 @@
     line-height: $line-sm;
     font-size: $font-sm;
   }
+  .select-arrow {
+    width: $icon-xsm;
+    height: $icon-xsm;
+  }
 }
 
 :host([size='lg']) {
@@ -61,5 +79,9 @@
     padding: $padding-xsm $padding-md;
     line-height: $line-base;
     font-size: $font-base;
+  }
+  .select-arrow {
+    width: $icon-md;
+    height: $icon-md;
   }
 }

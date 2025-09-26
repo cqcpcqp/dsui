@@ -65,14 +65,14 @@ export default class DsInput extends HTMLElement {
     return (
       <div className="input-group">
         {/* prefix */}
-        <svg></svg>
+        {/* {<svg></svg>} */}
         <input
           value={this.value}
           onInput={handleChange}
           placeholder={this.getAttribute('placeholder') || ''}
         ></input>
         {/* suffix */}
-        <svg></svg>
+        {/* <svg></svg> */}
         {/* error or tip */}
         <div></div>
       </div>
