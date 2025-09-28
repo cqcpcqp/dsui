@@ -1,0 +1,59 @@
+@import '../styles/util.scss';
+
+.radio-item {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: $font-md;
+  line-height: $line-md;
+  color: #060a26;
+
+  input[type='radio'] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid $border-default;
+    border-radius: 50%;
+    margin-right: $margin-sm;
+    position: relative;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  }
+
+  input[type='radio']::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background-color: $brand-primary;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  input[type='radio']:checked::after {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  input[type='radio']:hover {
+    border-color: $border-primary;
+  }
+
+  input[type='radio']:focus-visible {
+    border-color: $border-primary;
+    box-shadow: 0 0 0 3px rgba($brand-primary, 0.2);
+  }
+
+  &:hover input[type='radio'] {
+    border-color: $border-primary;
+  }
+
+  &:focus-within input[type='radio'] {
+    border-color: $border-primary;
+    box-shadow: 0 0 0 3px rgba($brand-primary, 0.2);
+  }
+}

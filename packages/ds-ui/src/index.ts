@@ -5,6 +5,8 @@ import DsInput from './input/input';
 import DsSelect from './select/select';
 import DsOption from './select/option';
 import DsIcon from './icon/icon';
+import DsRadioGroup from './radio/radio-group';
+import DsRadioItem from './radio/radio-item';
 
 export default {
   Square,
@@ -14,4 +16,6 @@ export default {
   DsSelect,
   DsOption,
   DsIcon,
+  DsRadioGroup,
+  DsRadioItem,
 };

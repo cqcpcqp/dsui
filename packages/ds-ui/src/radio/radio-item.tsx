@@ -1,0 +1,96 @@
+import { Component, Didact } from 'ds-core';
+import DsRadioGroup from './radio-group';
+
+import style from './radio-item.scss';
+
+@Component({
+  select: 'ds-radio-item',
+  template: `
+    <template id="ds-radio-item">
+      <style>
+        ${style}
+      </style>
+    </template>
+  `,
+})
+export default class DsRadioItem extends HTMLElement {
+  static get observedAttributes() {
+    return ['size'];
+  }
+
+  private _value = '';
+
+  get value() {
+    return this._value;
+  }
+
+  set value(val: string) {
+    this._value = val;
+    this._render();
+  }
+
+  private _checked = false;
+
+  get checked() {
+    return this._checked;
+  }
+
+  set checked(val: boolean) {
+    this._checked = val;
+    this._render();
+  }
+
+  private getRadioGroup(): DsRadioGroup {
+    // 
+    /**
+     * TODO(cqcpcqp) 通过dom来获取父元素 我总是妄想实现一种函数 比如 viewParent
+     * radioGroup: RadioGroup = viewParent();
+     */
+    return this.closest('ds-radio-group') as DsRadioGroup;
+  }
+
+  shadow;
+
+  constructor() {
+    super();
+
+    this.shadow = this.attachShadow({ mode: 'open' });
+
+    const template: HTMLTemplateElement = document.getElementById(
+      'ds-radio-item',
+    ) as HTMLTemplateElement;
+    const templateContent = template.content;
+
+    this.shadow.appendChild(templateContent.cloneNode(true));
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    this._render();
+  }
+
+  connectedCallback() {
+    console.log('item-tsx ?');
+    this.classList.add('ds-radio-item');
+    this._render();
+  }
+
+  private _render() {
+    Didact.render(this.render(), this.shadow);
+  }
+
+  render() {
+    const clickHandler = (e) => {
+      const group = this.getRadioGroup();
+      if (group && !this._checked) {
+        group.value = this.value;
+      }
+    };
+
+    return (
+      <label className="radio-item" onClick={clickHandler}>
+        <input type="radio" value={this.value} checked={this.checked} />
+        <slot></slot>
+      </label>
+    );
+  }
+}

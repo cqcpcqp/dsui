@@ -10,6 +10,7 @@ import LoadingDoc from '@/components/component/loading-doc.vue';
 import InputDoc from '@/components/component/input-doc.vue';
 import SelectDoc from '@/components/component/select-doc.vue';
 import IconDoc from '@/components/component/icon-doc.vue';
+import RadioDoc from '@/components/component/radio-doc.vue';
 import { DsFlex } from 'dsui';
 
 export default {
@@ -25,11 +26,12 @@ export default {
     ColumnDoc,
     SelectDoc,
     IconDoc,
+    RadioDoc,
     DsFlex,
   },
   data() {
     return {
-      selected: 'icon',
+      selected: 'radio',
     };
   },
 
@@ -74,6 +76,7 @@ export default {
       <input-doc v-if="selected === 'input'"></input-doc>
       <select-doc v-if="selected === 'select'"></select-doc>
       <icon-doc v-if="selected === 'icon'"></icon-doc>
+      <radio-doc v-if="selected === 'radio'"></radio-doc>
     </div>
   </ds-flex>
 </template>
