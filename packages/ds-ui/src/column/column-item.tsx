@@ -13,10 +13,6 @@ import style from './column-item.scss';
   `,
 })
 export default class DsColumnItem extends HTMLElement {
-  static get observedAttributes() {
-    return ['slot'];
-  }
-
   shadow;
 
   constructor() {

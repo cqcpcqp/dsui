@@ -29,10 +29,6 @@ export default {
       </button>
     </ds-flex>
 
-    <button is="ds-button" category="primary" @click="placeholder = 'placeholder changed'">
-      dynamic change placeholder
-    </button>
-
     <ds-flex :direction="'column'" gap="20px">
       <p>具有初始值的ds-input / {{ withInitialValue }}</p>
       <ds-input :placeholder="placeholder" :size="size" v-model="withInitialValue"></ds-input>
@@ -48,6 +44,8 @@ export default {
 
       <p>以下为原生 文本输入功能</p>
       <input type="text" style="height: 32px; line-height: 22px" v-model="withInitialValue" />
+
+      <input type="text" style="height: 32px; line-height: 22px" v-model="placeholder" />
 
       <fieldset>
         <legend>contenteditable div</legend>

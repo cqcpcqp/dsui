@@ -1,4 +1,4 @@
-import { Component, Didact } from 'ds-core';
+import { Component, Didact, input } from 'ds-core';
 
 import style from './input.scss';
 
@@ -13,9 +13,7 @@ import style from './input.scss';
   `,
 })
 export default class DsInput extends HTMLElement {
-  static get observedAttributes() {
-    return ['size', 'placeholder'];
-  }
+  placeholder = input('');
 
   private _value = '';
 
@@ -47,10 +45,6 @@ export default class DsInput extends HTMLElement {
     this.shadow.appendChild(templateContent.cloneNode(true));
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    this._render();
-  }
-
   connectedCallback() {
     this.classList.add('ds-input');
     this._render();
@@ -66,11 +60,7 @@ export default class DsInput extends HTMLElement {
       <div className="input-group">
         {/* prefix */}
         {/* {<svg></svg>} */}
-        <input
-          value={this.value}
-          onInput={handleChange}
-          placeholder={this.getAttribute('placeholder') || ''}
-        ></input>
+        <input value={this.value} onInput={handleChange} placeholder={this.placeholder()}></input>
         {/* suffix */}
         {/* <svg></svg> */}
         {/* error or tip */}

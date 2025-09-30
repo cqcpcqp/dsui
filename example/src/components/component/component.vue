@@ -31,7 +31,7 @@ export default {
   },
   data() {
     return {
-      selected: 'radio',
+      selected: 'input',
     };
   },
 

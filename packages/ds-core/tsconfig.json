@@ -4,5 +4,5 @@
     "composite": true,
     "declaration": true
   },
-  "include": ["jsx/**/*.ts", "*.ts", "decorators/**/*.ts"]
+  "include": ["jsx/**/*.ts", "*.ts", "decorators/**/*.ts", "signal/**/*.ts"]
 }
