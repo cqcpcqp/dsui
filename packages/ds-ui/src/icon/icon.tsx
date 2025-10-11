@@ -1,4 +1,4 @@
-import { Component, Didact } from 'ds-core';
+import { Component, effect, input } from 'ds-core';
 
 import style from './icon.scss';
 // from https://www.iconfont.cn/collections/detail?spm=a313x.collections_index.i1.d9df05512.406d3a81hEt0X8&cid=9402
@@ -44,32 +44,10 @@ export default class DsIcon extends HTMLElement {
   }
 
   /** Icon size, support 'sm', 'md', 'lg' or arbitrary size. Default size is 'md', 16px. */
-  private _size = 'md';
-
-  get size() {
-    return this._size;
-  }
-
-  set size(value: string) {
-    if (this._size !== value) {
-      this._size = value;
-      this.setSize();
-    }
-  }
+  size = input('md');
 
   /** Icon color, support 'danger', 'primary', 'warning', 'success', 'default' */
-  private _color = 'default';
-
-  get color() {
-    return this._color;
-  }
-
-  set color(value: string) {
-    if (this._color !== value) {
-      this._color = value;
-      this.setColor();
-    }
-  }
+  color = input('default');
 
   shadow;
 
@@ -84,29 +62,27 @@ export default class DsIcon extends HTMLElement {
     this.shadow.appendChild(templateContent.cloneNode(true));
   }
 
-  setColor() {
-    // 用这种class的方式没办法做到自定义颜色了 自己在外面设吧
-    if (ICON_COLORS.includes(this.color)) {
-      ICON_COLORS.forEach((c) => {
-        this.classList.remove(`ds-icon-${c}`);
-      });
-      this.classList.add(`ds-icon-${this.color}`);
-    }
-  }
-
-  setSize() {
-    // 用这种class的方式没办法做到自定义大小 自己在外面设吧
-    if (ICON_SIZES.includes(this.size)) {
-      ICON_SIZES.forEach((s) => {
-        this.classList.remove(`ds-size-${s}`);
-      });
-      this.classList.add(`ds-size-${this.size}`);
-    }
-  }
-
   connectedCallback() {
-    this.setColor();
-    this.setSize();
     this.classList.add('ds-icon');
+
+    effect(() => {
+      // 用这种class的方式没办法做到自定义颜色了 自己在外面设吧
+      if (ICON_COLORS.includes(this.color())) {
+        ICON_COLORS.forEach((c) => {
+          this.classList.remove(`ds-icon-${c}`);
+        });
+        this.classList.add(`ds-icon-${this.color()}`);
+      }
+    });
+
+    effect(() => {
+      // 用这种class的方式没办法做到自定义大小 自己在外面设吧
+      if (ICON_SIZES.includes(this.size())) {
+        ICON_SIZES.forEach((s) => {
+          this.classList.remove(`ds-size-${s}`);
+        });
+        this.classList.add(`ds-size-${this.size()}`);
+      }
+    });
   }
 }

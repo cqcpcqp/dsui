@@ -83,7 +83,12 @@ export default class DsSelect extends HTMLElement {
       this.isOpen = false;
       this.mask?.destroy();
       e.stopPropagation();
-      // 手动触发一个input时间来通知Vue值已改变
+      /**
+       * 手动触发一个input时间来通知Vue值已改变
+       * Q&A:
+       * 为什么input.tsx中就不需要dispatch一个event出去？
+       * 因为input.tsx是直接在原生input里面进行输入的，本身就会触发原生时间，Vue感知的到
+       */
       this.dispatchEvent(new Event('input'));
     });
   }

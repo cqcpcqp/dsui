@@ -28,10 +28,20 @@ export function input(initialValue) {
   let _value = initialValue;
   let componentRef;
 
+  // 存储依赖这个signal的所有effect
+  // effect与signal是多对多的关系
+  const effects = new Set<Function>();
+
   const signal = function () {
     if (!componentRef) {
+      // TODO(cqcpcqp) 到底为什么这个this是指向的componentRef
       componentRef = this;
     }
+
+    if (currentEffect) {
+      effects.add(currentEffect);
+    }
+
     return _value;
   };
 
@@ -40,6 +50,13 @@ export function input(initialValue) {
     if (_value === value) return;
 
     _value = value;
+
+    // 通知所有effect
+    for (const effect of effects) {
+      effect();
+    }
+
+    // input的signal变更时需要触发render
     if (componentRef && componentRef._render) {
       componentRef._render();
     }
@@ -48,4 +65,25 @@ export function input(initialValue) {
   signal.__isInputSignal = true;
 
   return signal;
+}
+
+let currentEffect = null;
+
+/**
+ * 理论上会先执行一次，找到其中的signal， 然后在这个signal变更的时候再执行一次
+ * effect不会收集func中异步部分的signal
+ */
+export function effect(func) {
+  const run = () => {
+    const prevEffect = currentEffect;
+    currentEffect = run;
+    try {
+      func();
+    } finally {
+      currentEffect = prevEffect;
+    }
+  };
+
+  run();
+  return run;
 }

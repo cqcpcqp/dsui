@@ -1,7 +1,7 @@
 import { render } from './render';
 import { createElement } from './jsx/createElement';
 import { Component } from './decorators/component';
-import { input } from './signal';
+import { input, effect } from './signal';
 import { useState } from './hook';
 
 const Didact = {
@@ -10,4 +10,4 @@ const Didact = {
   render,
 };
 
-export { Didact, Component, input };
+export { Didact, Component, input, effect };
