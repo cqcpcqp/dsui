@@ -7,6 +7,9 @@ import DsOption from './select/option';
 import DsIcon from './icon/icon';
 import DsRadioGroup from './radio/radio-group';
 import DsRadioItem from './radio/radio-item';
+import DsLoading from './loading/loading';
+import DsFlex from './flex/flex';
+import DsButton from './button/button';
 
 export default {
   Square,
@@ -18,4 +21,7 @@ export default {
   DsIcon,
   DsRadioGroup,
   DsRadioItem,
+  DsLoading,
+  DsFlex,
+  DsButton,
 };

@@ -1,7 +1,5 @@
 <script>
-import { DsFlex } from 'dsui';
 export default {
-  components: { DsFlex },
   data() {
     return {
       withInitialValue: 'Initial Value',

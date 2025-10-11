@@ -1,0 +1,121 @@
+.tui-btn-icon-left {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 12px;
+  fill: blue;
+}
+button[is='ds-button'] {
+  height: 32px;
+  padding: 4px 12px;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  text-transform: none;
+  color: #ffffff;
+  border: 1px solid transparent;
+}
+button[is='ds-button']:hover {
+  filter: brightness(105%);
+}
+button[is='ds-button'][category='primary'] {
+  background-color: #068cff;
+  border: 1px solid #068cff;
+}
+button[is='ds-button'][category='success'] {
+  background-color: #22a765;
+  border-color: #22a765;
+}
+button[is='ds-button'][category='danger'] {
+  background-color: #dd4b4b;
+  border-color: #dd4b4b;
+}
+button[is='ds-button'][category='warning'] {
+  background-color: #ef8b16;
+  border-color: #ef8b16;
+}
+button[is='ds-button'][category='default'] {
+  background-color: #d3daed;
+  border-color: #d3daed;
+}
+button[is='ds-button'][outline] {
+  background-color: transparent !important;
+}
+button[is='ds-button'][outline][category='primary'] {
+  border-color: #068cff;
+  color: #068cff;
+}
+button[is='ds-button'][outline][category='success'] {
+  border-color: #22a765;
+  color: #22a765;
+}
+button[is='ds-button'][outline][category='danger'] {
+  border-color: #dd4b4b;
+  color: #dd4b4b;
+}
+button[is='ds-button'][outline][category='warning'] {
+  border-color: #ef8b16;
+  color: #ef8b16;
+}
+button[is='ds-button'][outline][category='default'] {
+  border-color: #d3daed;
+  color: #292929;
+}
+button[is='ds-button'][disabled] {
+  background-color: #fafbfc;
+  border-color: #fafbfc;
+  color: #b6bdb1;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+button[is='ds-button'].loading {
+  background-color: #fafbfc;
+  border-color: #fafbfc;
+  color: #b6bdb1;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.button-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+.ds-btn-ripple-circle-color {
+  background: #068cff;
+  filter: opacity(0.5);
+}
+.ds-btn-ripple-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+  animation: btn-ripple 0.5s ease-in;
+}
+@keyframes btn-ripple {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    width: 200%;
+    padding-bottom: 200%;
+    opacity: 0;
+  }
+}

@@ -1,6 +1,5 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { DsFlex } from 'dsui';
 
 const placeholder = ref('placeholder');
 const size = ref('md');

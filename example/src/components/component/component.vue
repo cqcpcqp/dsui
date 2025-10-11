@@ -11,7 +11,6 @@ import InputDoc from '@/components/component/input-doc.vue';
 import SelectDoc from '@/components/component/select-doc.vue';
 import IconDoc from '@/components/component/icon-doc.vue';
 import RadioDoc from '@/components/component/radio-doc.vue';
-import { DsFlex } from 'dsui';
 
 export default {
   components: {
@@ -27,7 +26,6 @@ export default {
     SelectDoc,
     IconDoc,
     RadioDoc,
-    DsFlex,
   },
   data() {
     return {

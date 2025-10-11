@@ -1,0 +1,49 @@
+svg {
+  animation: rotate 2s linear infinite;
+  margin: auto;
+}
+
+.primary circle {
+  stroke: #068cff;
+}
+
+.success circle {
+  stroke: #22a765;
+}
+
+.disabled circle {
+  stroke: #b6bdd1;
+}
+
+svg circle {
+  stroke-linecap: round;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-width: 10%;
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+
+:host {
+  display: block;
+}

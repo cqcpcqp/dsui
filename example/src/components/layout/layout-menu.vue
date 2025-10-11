@@ -2,10 +2,9 @@
 import Doc from '@/components/component/component.vue';
 import Headless from '@/components/headless/headless.vue';
 import Guide from '@/components/guide/guide.vue';
-import { DsFlex } from 'dsui';
 
 export default {
-  components: { Doc, Headless, Guide, DsFlex },
+  components: { Doc, Headless, Guide },
   data() {
     return {
       selectedMenu: 'component',

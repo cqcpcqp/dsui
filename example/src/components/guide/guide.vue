@@ -1,15 +1,13 @@
 <script>
-import { DsFlex } from 'dsui';
 import ColorDoc from '@/components/guide/color-doc.vue';
 
 export default {
   components: {
-    DsFlex,
     ColorDoc,
   },
   data() {
     return {
-      selected: 'colors'
+      selected: 'colors',
     };
   },
 

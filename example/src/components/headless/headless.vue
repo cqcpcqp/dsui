@@ -1,11 +1,10 @@
 <script>
-import { DsFlex } from 'dsui';
 import CollectionDoc from '@/components/headless/collection-doc.vue';
 import OverlayDoc from '@/components/headless/overlay-doc.vue';
 
 // TODO(cqcpcqp) 这里完全可以用selectionModel
 export default {
-  components: { OverlayDoc, CollectionDoc, DsFlex },
+  components: { OverlayDoc, CollectionDoc },
   data() {
     return {
       selectedItem: 'collection',

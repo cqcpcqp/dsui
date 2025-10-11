@@ -1,6 +1,5 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { DsFlex } from 'dsui';
 
 const value = ref('apple');
 const items = ref(['apple', 'orange']);

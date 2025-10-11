@@ -1,19 +1,18 @@
 import { Component } from 'ds-core';
+import style from './flex.scss';
 
 @Component({
   select: 'ds-flex',
   template: `
     <template id="ds-flex">
       <style>
-        :host {
-          display: flex;
-        }
+        ${style}
       </style>
       <slot name="ds-flex-item"></slot>
     </template>
   `,
 })
-export class DsFlex extends HTMLElement {
+export default class DsFlex extends HTMLElement {
   static get observedAttributes() {
     return ['direction', 'align', 'justify', 'gap'];
   }
