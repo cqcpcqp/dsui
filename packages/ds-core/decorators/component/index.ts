@@ -16,7 +16,6 @@ export const templateControl = {};
 
 interface ComponentInfo {
   select: string;
-  extends?: string;
   style?: string;
   template?: string;
 }
@@ -49,7 +48,7 @@ export const Component = (object: ComponentInfo) => {
       }
     } as any;
 
-    customElements.define(object.select, extendedClass, { extends: object.extends });
+    customElements.define(object.select, extendedClass);
 
     return extendedClass;
   };

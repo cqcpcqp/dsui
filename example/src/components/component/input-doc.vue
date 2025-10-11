@@ -22,9 +22,9 @@ export default {
     <p>输入文本内容</p>
 
     <ds-flex gap="20px">
-      <button is="ds-button" v-for="s in sizeList" category="primary" @click="size = s">
+      <ds-button v-for="s in sizeList" category="primary" @click="size = s">
         {{ s }}
-      </button>
+      </ds-button>
     </ds-flex>
 
     <ds-flex :direction="'column'" gap="20px">

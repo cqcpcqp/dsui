@@ -5,7 +5,7 @@
   margin-right: 12px;
   fill: blue;
 }
-button[is='ds-button'] {
+button {
   height: 32px;
   padding: 4px 12px;
   font-size: 14px;
@@ -24,60 +24,60 @@ button[is='ds-button'] {
   color: #ffffff;
   border: 1px solid transparent;
 }
-button[is='ds-button']:hover {
+button:hover {
   filter: brightness(105%);
 }
-button[is='ds-button'][category='primary'] {
+:host([category='primary']) button {
   background-color: #068cff;
   border: 1px solid #068cff;
 }
-button[is='ds-button'][category='success'] {
+:host([category='success']) button {
   background-color: #22a765;
   border-color: #22a765;
 }
-button[is='ds-button'][category='danger'] {
+:host([category='danger']) button {
   background-color: #dd4b4b;
   border-color: #dd4b4b;
 }
-button[is='ds-button'][category='warning'] {
+:host([category='warning']) button {
   background-color: #ef8b16;
   border-color: #ef8b16;
 }
-button[is='ds-button'][category='default'] {
+:host([category='default']) button {
   background-color: #d3daed;
   border-color: #d3daed;
 }
-button[is='ds-button'][outline] {
+:host([outline]) button {
   background-color: transparent !important;
 }
-button[is='ds-button'][outline][category='primary'] {
+:host([outline][category='primary']) button {
   border-color: #068cff;
   color: #068cff;
 }
-button[is='ds-button'][outline][category='success'] {
+:host([outline][category='success']) button {
   border-color: #22a765;
   color: #22a765;
 }
-button[is='ds-button'][outline][category='danger'] {
+:host([outline][category='danger']) button {
   border-color: #dd4b4b;
   color: #dd4b4b;
 }
-button[is='ds-button'][outline][category='warning'] {
+:host([outline][category='warning']) button {
   border-color: #ef8b16;
   color: #ef8b16;
 }
-button[is='ds-button'][outline][category='default'] {
+:host([outline][category='default']) button {
   border-color: #d3daed;
   color: #292929;
 }
-button[is='ds-button'][disabled] {
+:host([disabled]) button {
   background-color: #fafbfc;
   border-color: #fafbfc;
   color: #b6bdb1;
   cursor: not-allowed;
   box-shadow: none;
 }
-button[is='ds-button'].loading {
+:host([loading]) button {
   background-color: #fafbfc;
   border-color: #fafbfc;
   color: #b6bdb1;

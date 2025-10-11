@@ -27,74 +27,44 @@ export default {
     <p>l is: {{ l }}</p>
     <h2>Default Button</h2>
     <div style="display: flex; gap: 20px">
-      <button is="ds-button" v-for="category in categories" :category="category" @click="l++">
+      <ds-button v-for="category in categories" :category="category" @click="l++">
         {{ category }}
-      </button>
+      </ds-button>
     </div>
 
     <h2>OutLined Button</h2>
     <div style="display: flex; gap: 20px">
-      <button
-        is="ds-button"
-        outline
-        v-for="category in categories"
-        :category="category"
-        @click="l++"
-      >
+      <ds-button outline v-for="category in categories" :category="category" @click="l++">
         {{ category }}
-      </button>
+      </ds-button>
     </div>
 
     <h2>Disabled Button</h2>
     <div style="display: flex; gap: 20px">
-      <button
-        is="ds-button"
-        disabled
-        v-for="category in categories"
-        :category="category"
-        @click="l++"
-      >
+      <ds-button disabled v-for="category in categories" :category="category" @click="l++">
         {{ category }}
-      </button>
+      </ds-button>
     </div>
 
     <h2>Different Size Button</h2>
     <div style="display: flex; gap: 20px">
-      <button
-        is="ds-button"
-        :size="lg"
-        v-for="category in categories"
-        :category="category"
-        @click="l++"
-      >
+      <ds-button :size="lg" v-for="category in categories" :category="category" @click="l++">
         {{ category }}
-      </button>
+      </ds-button>
     </div>
 
     <h2>Button Icon</h2>
     <div style="display: flex; gap: 20px">
-      <button
-        is="ds-button"
-        icon="arrow"
-        v-for="category in categories"
-        :category="category"
-        @click="l++"
-      >
+      <ds-button icon="arrow" v-for="category in categories" :category="category" @click="l++">
         {{ category }}
-      </button>
+      </ds-button>
     </div>
 
     <h2>Button Loading</h2>
     <div style="display: flex; gap: 20px">
-      <button
-        is="ds-button"
-        loading
-        v-for="category in categories"
-        :category="category"
-        @click="l++"
-      >
+      <ds-button loading v-for="category in categories" :category="category" @click="l++">
         {{ category }}
-      </button>
+      </ds-button>
     </div>
   </div>
 </template>
