@@ -1,15 +1,19 @@
-const insertStyle = (style: string) => {
-  // const styleElement = document.createElement('style');
-  // styleElement.textContent = style;
-  // document.head.appendChild(styleElement);
-  document.head.innerHTML += style;
-};
+const getTemplateIdBySelect = (select) => `${select}-template`;
 
-const insertTemplate = (template: string) => {
-  // const templateElement = document.createElement('template');
-  // templateElement.innerHTML = template;
-  // document.head.appendChild(templateElement);
-  document.head.innerHTML += template;
+const insertTemplate = (select: string, style: string, template: string) => {
+  const templateId = getTemplateIdBySelect(select);
+
+  // 检查模板是否已存在
+  if (document.getElementById(templateId)) {
+    console.warn(`Template with id "${templateId}" already exists. Skipping insertion.`);
+    return;
+  }
+
+  const templateElement = document.createElement('template');
+  templateElement.id = templateId;
+
+  templateElement.innerHTML = `<style>${style}</style>${template}`;
+  document.head.appendChild(templateElement);
 };
 
 export const templateControl = {};
@@ -22,12 +26,21 @@ interface ComponentInfo {
 
 export const Component = (object: ComponentInfo) => {
   return (constructor: any) => {
-    if (object.style) insertStyle(object.style);
-    if (object.template) insertTemplate(object.template);
-    const extendedClass = class extends constructor {
-      constructor(...args: any[]) {
-        super(...args);
+    const style = object.style || '';
+    const template = object.template || '';
+    insertTemplate(object.select, style, template);
 
+    const extendedClass = class extends constructor {
+      private _appendTemplate() {
+        this.attachShadow({ mode: 'open' });
+        const template: HTMLTemplateElement = document.getElementById(
+          getTemplateIdBySelect(object.select),
+        ) as HTMLTemplateElement;
+        const templateContent = template.content;
+        this.shadowRoot.appendChild(templateContent.cloneNode(true));
+      }
+
+      private _patchInputProperty() {
         const properties = Object.getOwnPropertyNames(this);
 
         properties.forEach((property) => {
@@ -45,6 +58,15 @@ export const Component = (object: ComponentInfo) => {
             });
           }
         });
+      }
+
+      constructor(...args: any[]) {
+        super(...args);
+
+        // 在super后执行，意味着无法在constructor中正常使用shadowRoot
+        this._appendTemplate();
+
+        this._patchInputProperty();
       }
     } as any;
 

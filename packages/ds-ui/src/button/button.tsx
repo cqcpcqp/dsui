@@ -4,16 +4,8 @@ import style from './button.scss';
 
 @Component({
   select: 'ds-button',
-  template: `
-    <template id="ds-button">
-      <style>
-        ${style}
-      </style>
-      <button>
-        <slot></slot>
-      </button>
-    </template>
-  `,
+  style,
+  template: `<button><slot></slot></button>`,
 })
 export default class DsButton extends HTMLElement {
   static get observedAttributes(): string[] {
@@ -22,20 +14,11 @@ export default class DsButton extends HTMLElement {
 
   controller = new AbortController();
 
-  shadow;
-
   constructor() {
     super();
+  }
 
-    this.shadow = this.attachShadow({ mode: 'open' });
-
-    const template: HTMLTemplateElement = document.getElementById(
-      'ds-button',
-    ) as HTMLTemplateElement;
-    const templateContent = template.content;
-
-    this.shadow.appendChild(templateContent.cloneNode(true));
-
+  connectedCallback() {
     this.addEventListener(
       'click',
       (event) => {

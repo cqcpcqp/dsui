@@ -5,13 +5,7 @@ import style from './radio-item.scss';
 
 @Component({
   select: 'ds-radio-item',
-  template: `
-    <template id="ds-radio-item">
-      <style>
-        ${style}
-      </style>
-    </template>
-  `,
+  style,
 })
 export default class DsRadioItem extends HTMLElement {
   static get observedAttributes() {
@@ -41,7 +35,6 @@ export default class DsRadioItem extends HTMLElement {
   }
 
   private getRadioGroup(): DsRadioGroup {
-    // 
     /**
      * TODO(cqcpcqp) 通过dom来获取父元素 我总是妄想实现一种函数 比如 viewParent
      * radioGroup: RadioGroup = viewParent();
@@ -49,19 +42,8 @@ export default class DsRadioItem extends HTMLElement {
     return this.closest('ds-radio-group') as DsRadioGroup;
   }
 
-  shadow;
-
   constructor() {
     super();
-
-    this.shadow = this.attachShadow({ mode: 'open' });
-
-    const template: HTMLTemplateElement = document.getElementById(
-      'ds-radio-item',
-    ) as HTMLTemplateElement;
-    const templateContent = template.content;
-
-    this.shadow.appendChild(templateContent.cloneNode(true));
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -75,7 +57,7 @@ export default class DsRadioItem extends HTMLElement {
   }
 
   private _render() {
-    Didact.render(this.render(), this.shadow);
+    Didact.render(this.render(), this.shadowRoot as any);
   }
 
   render() {

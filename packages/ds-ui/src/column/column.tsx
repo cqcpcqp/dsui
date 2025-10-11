@@ -3,33 +3,16 @@ import style from './column.scss';
 
 @Component({
   select: 'ds-column',
-  template: `
-    <template id="ds-column">
-      <style>
-        ${style}
-      </style>
-      <slot name="ds-column-item"></slot>
-    </template>
-  `,
+  style,
+  template: `<slot name="ds-column-item"></slot>`,
 })
 export default class DsColumn extends HTMLElement {
   static get observedAttributes() {
     return ['count ', 'rule', 'gap'];
   }
 
-  shadow;
-
   constructor() {
     super();
-
-    this.shadow = this.attachShadow({ mode: 'open' });
-
-    const template: HTMLTemplateElement = document.getElementById(
-      'ds-column',
-    ) as HTMLTemplateElement;
-    const templateContent = template.content;
-
-    this.shadow.appendChild(templateContent.cloneNode(true));
   }
 
   connectedCallback() {
@@ -42,7 +25,7 @@ export default class DsColumn extends HTMLElement {
 
   updateStyle() {
     return;
-    const shadow = this.shadow;
+    const shadow = this.shadowRoot;
     shadow.querySelector('style').textContent = `
     :host {
       column-count: ${this.getAttribute('count')};

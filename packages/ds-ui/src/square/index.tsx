@@ -5,36 +5,19 @@ import style from './index.scss';
 
 @Component({
   select: 'ds-square',
-  template: `
-    <template id="ds-square">
-      <style>
-        ${style}
-      </style>
-    </template>
-  `,
+  style,
 })
 export default class Square extends HTMLElement {
   static get observedAttributes() {
     return ['color', 'size'];
   }
 
-  shadow;
-
   constructor() {
     super();
-
-    this.shadow = this.attachShadow({ mode: 'open' });
-
-    const template: HTMLTemplateElement = document.getElementById(
-      'ds-square',
-    ) as HTMLTemplateElement;
-    const templateContent = template.content;
-
-    this.shadow.appendChild(templateContent.cloneNode(true));
   }
 
   connectedCallback() {
-    Didact.render(this.render(), this.shadow);
+    Didact.render(this.render(), this.shadowRoot as any);
   }
 
   disconnectedCallback() {}

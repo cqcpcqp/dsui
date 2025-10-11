@@ -5,28 +5,21 @@ import style from './select.scss';
 
 @Component({
   select: 'ds-select',
+  style,
   template: `
-    <template id="ds-select">
-      <style>
-        ${style}
-      </style>
-      <!-- select组件中用到的svg -->
-      <svg
-        aria-hidden="true"
-        style="position: absolute; width: 0px; height: 0px; overflow: hidden;"
-      >
-        <symbol id="icon-up" viewBox="0 0 1024 1024">
-          <path
-            d="M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3c-3.8 5.3-0.1 12.7 6.5 12.7h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z"
-          ></path>
-        </symbol>
-        <symbol id="icon-down" viewBox="0 0 1024 1024">
-          <path
-            d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3 0.1-12.7-6.4-12.7z"
-          ></path>
-        </symbol>
-      </svg>
-    </template>
+    <!-- select组件中用到的svg -->
+    <svg aria-hidden="true" style="position: absolute; width: 0px; height: 0px; overflow: hidden;">
+      <symbol id="icon-up" viewBox="0 0 1024 1024">
+        <path
+          d="M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3c-3.8 5.3-0.1 12.7 6.5 12.7h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z"
+        ></path>
+      </symbol>
+      <symbol id="icon-down" viewBox="0 0 1024 1024">
+        <path
+          d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3 0.1-12.7-6.4-12.7z"
+        ></path>
+      </symbol>
+    </svg>
   `,
 })
 export default class DsSelect extends HTMLElement {
@@ -60,23 +53,10 @@ export default class DsSelect extends HTMLElement {
     }
   }
 
-  shadow;
-
   mask: Mask;
-
-  connected = false;
 
   constructor() {
     super();
-
-    this.shadow = this.attachShadow({ mode: 'open' });
-
-    const template: HTMLTemplateElement = document.getElementById(
-      'ds-select',
-    ) as HTMLTemplateElement;
-    const templateContent = template.content;
-
-    this.shadow.appendChild(templateContent.cloneNode(true));
 
     this.addEventListener('optionSelected', (e: CustomEvent) => {
       this.value = e.detail.value;
@@ -98,7 +78,6 @@ export default class DsSelect extends HTMLElement {
   }
 
   connectedCallback() {
-    this.connected = true;
     this.classList.add('ds-select');
 
     this._render();
@@ -107,9 +86,7 @@ export default class DsSelect extends HTMLElement {
   disconnectedCallback() {}
 
   private _render() {
-    if (this.connected) {
-      Didact.render(this.render(), this.shadow);
-    }
+    Didact.render(this.render(), this.shadowRoot as any);
   }
 
   render() {

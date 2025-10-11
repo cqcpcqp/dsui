@@ -3,31 +3,16 @@ import style from './flex.scss';
 
 @Component({
   select: 'ds-flex',
-  template: `
-    <template id="ds-flex">
-      <style>
-        ${style}
-      </style>
-      <slot name="ds-flex-item"></slot>
-    </template>
-  `,
+  style,
+  template: `<slot name="ds-flex-item"></slot>`,
 })
 export default class DsFlex extends HTMLElement {
   static get observedAttributes() {
     return ['direction', 'align', 'justify', 'gap'];
   }
 
-  shadow;
-
   constructor() {
     super();
-
-    this.shadow = this.attachShadow({ mode: 'open' });
-
-    const template: HTMLTemplateElement = document.getElementById('ds-flex') as HTMLTemplateElement;
-    const templateContent = template.content;
-
-    this.shadow.appendChild(templateContent.cloneNode(true));
   }
 
   connectedCallback(): void {
@@ -39,9 +24,7 @@ export default class DsFlex extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    const shadow = this.shadow;
-
-    shadow.querySelector('style').textContent = `
+    this.shadowRoot.querySelector('style').textContent = `
       :host {
         display: flex;
         align-items: ${this.getAttribute('align') || 'normal'};

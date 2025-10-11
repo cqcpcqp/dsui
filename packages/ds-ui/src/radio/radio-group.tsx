@@ -6,14 +6,8 @@ import DsRadioItem from './radio-item';
 
 @Component({
   select: 'ds-radio-group',
-  template: `
-    <template id="ds-radio-group">
-      <style>
-        ${style}
-      </style>
-      <slot></slot>
-    </template>
-  `,
+  style,
+  template: `<slot></slot>`,
 })
 export default class DsRadioGroup extends HTMLElement {
   static get observedAttributes() {
@@ -35,28 +29,10 @@ export default class DsRadioGroup extends HTMLElement {
     this.updateRadioItemChecked();
   }
 
-  shadow;
-
   radioItems: DsRadioItem[] = [];
 
   constructor() {
     super();
-
-    this.shadow = this.attachShadow({ mode: 'open' });
-
-    const template: HTMLTemplateElement = document.getElementById(
-      'ds-radio-group',
-    ) as HTMLTemplateElement;
-    const templateContent = template.content;
-
-    this.shadow.appendChild(templateContent.cloneNode(true));
-
-    const slot = this.shadowRoot.querySelector('slot');
-    slot.addEventListener('slotchange', (e) => {
-      const nodes = slot.assignedNodes();
-      this.radioItems = nodes.filter((node) => node instanceof DsRadioItem) as DsRadioItem[];
-      this.updateRadioItemChecked();
-    });
   }
 
   updateRadioItemChecked() {
@@ -66,6 +42,12 @@ export default class DsRadioGroup extends HTMLElement {
   }
 
   connectedCallback() {
+    const slot = this.shadowRoot.querySelector('slot');
+    slot.addEventListener('slotchange', (e) => {
+      const nodes = slot.assignedNodes();
+      this.radioItems = nodes.filter((node) => node instanceof DsRadioItem) as DsRadioItem[];
+      this.updateRadioItemChecked();
+    });
     // TODO(cqcpcqp) 感觉这个connectedCallback不够用呢，是不是要等render结束之后再给个生命周期？
     this.classList.add('ds-radio-group');
   }

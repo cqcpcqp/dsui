@@ -4,13 +4,7 @@ import style from './option.scss';
 
 @Component({
   select: 'ds-option',
-  template: `
-    <template id="ds-option">
-      <style>
-        ${style}
-      </style>
-    </template>
-  `,
+  style,
 })
 export default class DsOption extends HTMLElement {
   static get observedAttributes() {
@@ -30,21 +24,8 @@ export default class DsOption extends HTMLElement {
     }
   }
 
-  shadow;
-
-  connected = false;
-
   constructor() {
     super();
-
-    this.shadow = this.attachShadow({ mode: 'open' });
-
-    const template: HTMLTemplateElement = document.getElementById(
-      'ds-option',
-    ) as HTMLTemplateElement;
-    const templateContent = template.content;
-
-    this.shadow.appendChild(templateContent.cloneNode(true));
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -53,15 +34,12 @@ export default class DsOption extends HTMLElement {
 
   connectedCallback() {
     this.classList.add('ds-option');
-    this.connected = true;
 
     this._render();
   }
 
   private _render() {
-    if (this.connected) {
-      Didact.render(this.render(), this.shadow);
-    }
+    Didact.render(this.render(), this.shadowRoot as any);
   }
 
   render() {

@@ -4,13 +4,7 @@ import style from './input.scss';
 
 @Component({
   select: 'ds-input',
-  template: `
-    <template id="ds-input">
-      <style>
-        ${style}
-      </style>
-    </template>
-  `,
+  style,
 })
 export default class DsInput extends HTMLElement {
   placeholder = input('');
@@ -30,19 +24,8 @@ export default class DsInput extends HTMLElement {
     this._render();
   }
 
-  shadow;
-
   constructor() {
     super();
-
-    this.shadow = this.attachShadow({ mode: 'open' });
-
-    const template: HTMLTemplateElement = document.getElementById(
-      'ds-input',
-    ) as HTMLTemplateElement;
-    const templateContent = template.content;
-
-    this.shadow.appendChild(templateContent.cloneNode(true));
   }
 
   connectedCallback() {
@@ -51,7 +34,7 @@ export default class DsInput extends HTMLElement {
   }
 
   private _render() {
-    Didact.render(this.render(), this.shadow);
+    Didact.render(this.render(), this.shadowRoot as any);
   }
 
   render() {

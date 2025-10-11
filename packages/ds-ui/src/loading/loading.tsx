@@ -3,40 +3,23 @@ import style from './loading.scss';
 
 @Component({
   select: 'ds-loading',
-  template: `
-    <template id="ds-loading">
-      <style>
-        ${style}
-      </style>
-      <svg viewbox="0 0 50 50">
-        <circle cx="50%" cy="50%" r="20" fill="none" />
-      </svg>
-    </template>
-  `,
+  style,
+  template: `<svg viewbox="0 0 50 50">
+    <circle cx="50%" cy="50%" r="20" fill="none" />
+  </svg>`,
 })
 export default class DsLoading extends HTMLElement {
   static get observedAttributes(): string[] {
     return ['color', 'size'];
   }
 
-  shadow;
-
   constructor() {
     super();
-
-    this.shadow = this.attachShadow({ mode: 'open' });
-
-    const template: HTMLTemplateElement = document.getElementById(
-      'ds-loading',
-    ) as HTMLTemplateElement;
-    const templateContent = template.content;
-
-    this.shadow.appendChild(templateContent.cloneNode(true));
   }
 
   connectedCallback() {
     // set color & size
-    const svg = this.shadow.querySelector('svg');
+    const svg = this.shadowRoot.querySelector('svg');
     svg.classList.add(this.getAttribute('color') || 'primary');
 
     const size = this.getAttribute('size');

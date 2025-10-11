@@ -22,14 +22,8 @@ const ICON_SIZES = ['sm', 'md', 'lg'];
 
 @Component({
   select: 'ds-icon',
-  template: `
-    <template id="ds-icon">
-      <style>
-        ${style}
-      </style>
-      <slot></slot>
-    </template>
-  `,
+  style,
+  template: `<slot></slot>`,
 })
 export default class DsIcon extends HTMLElement {
   /**
@@ -49,17 +43,8 @@ export default class DsIcon extends HTMLElement {
   /** Icon color, support 'danger', 'primary', 'warning', 'success', 'default' */
   color = input('default');
 
-  shadow;
-
   constructor() {
     super();
-
-    this.shadow = this.attachShadow({ mode: 'open' });
-
-    const template: HTMLTemplateElement = document.getElementById('ds-icon') as HTMLTemplateElement;
-    const templateContent = template.content;
-
-    this.shadow.appendChild(templateContent.cloneNode(true));
   }
 
   connectedCallback() {
