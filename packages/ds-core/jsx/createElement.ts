@@ -57,7 +57,7 @@ export function createElement(type, props, ...children): DidactElement {
     type,
     props: {
       ...props,
-      children: children.map((child) => {
+      children: children.flat().map((child) => {
         return typeof child === 'object' ? child : createTextElement(child);
       }),
     },

@@ -1,7 +1,8 @@
 import typescript from 'rollup-plugin-typescript2';
 import scss from 'rollup-plugin-scss';
 import { terser } from 'rollup-plugin-terser';
-import pkg from './package.json' assert { type: 'json' };
+// node v22 breaking change: remove import assertions in favor of "with" clause
+import pkg from './package.json' with { type: 'json' };
 
 const isDev = process.env.NODE_ENV === 'development';
 

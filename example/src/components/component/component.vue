@@ -11,6 +11,7 @@ import InputDoc from '@/components/component/input-doc.vue';
 import SelectDoc from '@/components/component/select-doc.vue';
 import IconDoc from '@/components/component/icon-doc.vue';
 import RadioDoc from '@/components/component/radio-doc.vue';
+import TableDoc from '@/components/component/table-doc.vue';
 
 export default {
   components: {
@@ -26,10 +27,11 @@ export default {
     SelectDoc,
     IconDoc,
     RadioDoc,
+    TableDoc,
   },
   data() {
     return {
-      selected: 'input',
+      selected: 'table',
     };
   },
 
@@ -60,6 +62,7 @@ export default {
         Fieldset
       </div>
       <div :class="{ active: selected === 'icon' }" @click="selected = 'icon'">Icon</div>
+      <div :class="{ active: selected === 'table' }" @click="selected = 'table'">Table</div>
     </div>
 
     <div class="doc-container">
@@ -75,6 +78,7 @@ export default {
       <select-doc v-if="selected === 'select'"></select-doc>
       <icon-doc v-if="selected === 'icon'"></icon-doc>
       <radio-doc v-if="selected === 'radio'"></radio-doc>
+      <table-doc v-if="selected === 'table'"></table-doc>
     </div>
   </ds-flex>
 </template>

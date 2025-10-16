@@ -10,6 +10,7 @@ import DsRadioItem from './radio/radio-item';
 import DsLoading from './loading/loading';
 import DsFlex from './flex/flex';
 import DsButton from './button/button';
+import DsTable from './table/table';
 
 export default {
   Square,
@@ -24,4 +25,5 @@ export default {
   DsLoading,
   DsFlex,
   DsButton,
+  DsTable
 };
