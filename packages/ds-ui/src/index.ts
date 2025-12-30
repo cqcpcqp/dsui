@@ -11,6 +11,7 @@ import DsLoading from './loading/loading';
 import DsFlex from './flex/flex';
 import DsButton from './button/button';
 import DsTable from './table/table';
+import DsTag from './tag/tag';
 
 export default {
   Square,
@@ -25,5 +26,6 @@ export default {
   DsLoading,
   DsFlex,
   DsButton,
-  DsTable
+  DsTable,
+  DsTag,
 };

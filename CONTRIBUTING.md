@@ -5,21 +5,17 @@
 First start:
 
 ```bash
-yarn run init
+yarn init
 ```
 
 After that, just run the following command:
 
 ```bash
-yarn run dev
+yarn dev
 ```
 
-example vue3 + vite
-packages rollup
-publish lerna
+Generate color:
 
-
-生成色值
 ```bash
 cd packages/ds-ui
 yarn color-generate

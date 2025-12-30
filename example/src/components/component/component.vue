@@ -12,6 +12,7 @@ import SelectDoc from '@/components/component/select-doc.vue';
 import IconDoc from '@/components/component/icon-doc.vue';
 import RadioDoc from '@/components/component/radio-doc.vue';
 import TableDoc from '@/components/component/table-doc.vue';
+import TagDoc from '@/components/component/tag-doc.vue';
 
 export default {
   components: {
@@ -28,10 +29,11 @@ export default {
     IconDoc,
     RadioDoc,
     TableDoc,
+    TagDoc
   },
   data() {
     return {
-      selected: 'table',
+      selected: 'tag',
     };
   },
 
@@ -63,6 +65,7 @@ export default {
       </div>
       <div :class="{ active: selected === 'icon' }" @click="selected = 'icon'">Icon</div>
       <div :class="{ active: selected === 'table' }" @click="selected = 'table'">Table</div>
+      <div :class="{ active: selected === 'tag' }" @click="selected = 'tag'">Tag</div>
     </div>
 
     <div class="doc-container">
@@ -79,6 +82,7 @@ export default {
       <icon-doc v-if="selected === 'icon'"></icon-doc>
       <radio-doc v-if="selected === 'radio'"></radio-doc>
       <table-doc v-if="selected === 'table'"></table-doc>
+      <tag-doc v-if="selected === 'tag'"></tag-doc>
     </div>
   </ds-flex>
 </template>
