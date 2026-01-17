@@ -7,7 +7,7 @@ import style from './tag.scss';
   style,
   template: `<slot></slot>`,
 })
-export default class DsTag extends HTMLElement {
+export class DsTag extends HTMLElement {
   static get observedAttributes(): string[] {
     return ['type', 'size'];
   }

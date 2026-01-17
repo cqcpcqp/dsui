@@ -6,7 +6,7 @@ import style from './column-item.scss';
   style,
   template: `<slot></slot>`,
 })
-export default class DsColumnItem extends HTMLElement {
+export class DsColumnItem extends HTMLElement {
   constructor() {
     super();
   }

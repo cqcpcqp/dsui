@@ -6,7 +6,7 @@ import style from './column.scss';
   style,
   template: `<slot name="ds-column-item"></slot>`,
 })
-export default class DsColumn extends HTMLElement {
+export class DsColumn extends HTMLElement {
   static get observedAttributes() {
     return ['count ', 'rule', 'gap'];
   }

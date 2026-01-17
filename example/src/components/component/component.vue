@@ -13,6 +13,7 @@ import IconDoc from '@/components/component/icon-doc.vue';
 import RadioDoc from '@/components/component/radio-doc.vue';
 import TableDoc from '@/components/component/table-doc.vue';
 import TagDoc from '@/components/component/tag-doc.vue';
+import FormDoc from '@/components/component/form-doc.vue';
 
 export default {
   components: {
@@ -29,15 +30,16 @@ export default {
     IconDoc,
     RadioDoc,
     TableDoc,
-    TagDoc
+    TagDoc,
+    FormDoc,
   },
   data() {
     return {
-      selected: 'tag',
+      selected: 'form',
     };
   },
 
-  mounted() {},
+  mounted() { },
 };
 </script>
 
@@ -66,6 +68,7 @@ export default {
       <div :class="{ active: selected === 'icon' }" @click="selected = 'icon'">Icon</div>
       <div :class="{ active: selected === 'table' }" @click="selected = 'table'">Table</div>
       <div :class="{ active: selected === 'tag' }" @click="selected = 'tag'">Tag</div>
+      <div :class="{ active: selected === 'form' }" @click="selected = 'form'">Form</div>
     </div>
 
     <div class="doc-container">
@@ -83,6 +86,7 @@ export default {
       <radio-doc v-if="selected === 'radio'"></radio-doc>
       <table-doc v-if="selected === 'table'"></table-doc>
       <tag-doc v-if="selected === 'tag'"></tag-doc>
+      <form-doc v-if="selected === 'form'"></form-doc>
     </div>
   </ds-flex>
 </template>
@@ -96,16 +100,20 @@ export default {
   flex-shrink: 0;
   padding: 12px 8px;
 }
-.panel > div {
+
+.panel>div {
   cursor: pointer;
 }
-.panel > div.active {
+
+.panel>div.active {
   color: blue;
 }
-.panel > div:hover {
+
+.panel>div:hover {
   color: blue;
   opacity: 0.5;
 }
+
 .doc-container {
   overflow: auto;
   padding: 0 8px 12px 8px;

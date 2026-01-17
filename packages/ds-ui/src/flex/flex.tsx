@@ -6,7 +6,7 @@ import style from './flex.scss';
   style,
   template: `<slot name="ds-flex-item"></slot>`,
 })
-export default class DsFlex extends HTMLElement {
+export class DsFlex extends HTMLElement {
   static get observedAttributes() {
     return ['direction', 'align', 'justify', 'gap'];
   }

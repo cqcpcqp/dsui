@@ -25,7 +25,7 @@ const ICON_SIZES = ['sm', 'md', 'lg'];
   style,
   template: `<slot></slot>`,
 })
-export default class DsIcon extends HTMLElement {
+export class DsIcon extends HTMLElement {
   /**
    * Vue的两种绑定方式
    * 1. 属性绑定 Attribute: color="primary"
@@ -38,10 +38,10 @@ export default class DsIcon extends HTMLElement {
   }
 
   /** Icon size, support 'sm', 'md', 'lg' or arbitrary size. Default size is 'md', 16px. */
-  size = input('md');
+  $size = input('md', { alias: 'size' });
 
   /** Icon color, support 'danger', 'primary', 'warning', 'success', 'default' */
-  color = input('default');
+  $color = input('default', { alias: 'color' });
 
   constructor() {
     super();
@@ -52,21 +52,21 @@ export default class DsIcon extends HTMLElement {
 
     effect(() => {
       // 用这种class的方式没办法做到自定义颜色了 自己在外面设吧
-      if (ICON_COLORS.includes(this.color())) {
+      if (ICON_COLORS.includes(this.$color())) {
         ICON_COLORS.forEach((c) => {
           this.classList.remove(`ds-icon-${c}`);
         });
-        this.classList.add(`ds-icon-${this.color()}`);
+        this.classList.add(`ds-icon-${this.$color()}`);
       }
     });
 
     effect(() => {
       // 用这种class的方式没办法做到自定义大小 自己在外面设吧
-      if (ICON_SIZES.includes(this.size())) {
+      if (ICON_SIZES.includes(this.$size())) {
         ICON_SIZES.forEach((s) => {
           this.classList.remove(`ds-size-${s}`);
         });
-        this.classList.add(`ds-size-${this.size()}`);
+        this.classList.add(`ds-size-${this.$size()}`);
       }
     });
   }

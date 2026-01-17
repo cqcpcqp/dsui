@@ -1,17 +1,12 @@
 export type HostComponentType = keyof HTMLElementTagNameMap | 'TEXT_ELEMENT';
 export type FiberType = HostComponentType | Function;
 
-export interface DidactElement {
+export interface DsElement {
   type: FiberType;
   props: {
     [key: string]: any;
-    children: DidactElement[];
+    children: DsElement[];
   };
-}
-
-export interface Hook {
-  state: any;
-  queue: Function[];
 }
 
 export interface Fiber {
@@ -25,7 +20,7 @@ export interface Fiber {
    */
   props: {
     [key: string]: any;
-    children: DidactElement[];
+    children: DsElement[];
   };
 
   /**
@@ -39,8 +34,8 @@ export interface Fiber {
   type?: FiberType;
 
   /**
-   * 指向由当前fiber.children中第一个DidactElement生成的Fiber
-   * 由于child的sibling指向兄弟fiber，所以这里代表的是reconcile后由DidactElement生成的
+   * 指向由当前fiber.children中第一个DsElement生成的Fiber
+   * 由于child的sibling指向兄弟fiber，所以这里代表的是reconcile后由DsElement生成的
    * 待执行的fiber，也就是有effectTag的fiber
    */
   child?: Fiber;
@@ -48,7 +43,7 @@ export interface Fiber {
   /**
    * 指向兄弟fiber
    * 例如：由当前fiber.child的的sibling应该指向由当前fiber.children中第二个
-   * DidactElement生成的Fiber
+   * DsElement生成的Fiber
    */
   sibling?: Fiber;
 
@@ -58,8 +53,6 @@ export interface Fiber {
    * DELETION: oldFiber被删除
    */
   effectTag?: 'UPDATE' | 'PLACEMENT' | 'DELETION';
-
-  hooks?: Hook[];
 }
 
 /**

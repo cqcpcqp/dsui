@@ -1,4 +1,5 @@
-import { DidactElement } from '../model';
+import { DsElement, HostComponentType } from '../model';
+
 /**
  * react类似的功能在 react/src/jsx/ReactJSXElements.js
  *
@@ -19,12 +20,12 @@ import { DidactElement } from '../model';
  * </div>
  *
  * js
- * Didact.createElement("div", null,
- *   Didact.createElement("h1", null, "Index: ", this.index),
- *   Didact.createElement("span", { title: "span title" }, "span content"),
+ * Ds.createElement("div", null,
+ *   Ds.createElement("h1", null, "Index: ", this.index),
+ *   Ds.createElement("span", { title: "span title" }, "span content"),
  *   "text content",
- *   Didact.createElement("input", { type: "number", value: this.inputValue })
- *   Didact.createElement(DsInput, { value: this.inputValue }),
+ *   Ds.createElement("input", { type: "number", value: this.inputValue })
+ *   Ds.createElement(DsInput, { value: this.inputValue }),
  *   this.dsInput()
  * );
  *
@@ -41,18 +42,18 @@ import { DidactElement } from '../model';
  *  </SelectDropdown>
  * )}
  * </div>
- * 
- * 
+ *
+ *
  * js
- * Didact.createElement("div", { className: "select-group" }, 
- *  Didact.createElement("input", { value: this.value, onInput: handleChange, placeholder: this.getAttribute('placeholder') || '' }),
- *    this._isOpen && (Didact.createElement(SelectDropdown, null, 
- *      Didact.createElement("slot", null)
+ * Ds.createElement("div", { className: "select-group" },
+ *  Ds.createElement("input", { value: this.value, onInput: handleChange, placeholder: this.getAttribute('placeholder') || '' }),
+ *    this._isOpen && (Ds.createElement(SelectDropdown, null,
+ *      Ds.createElement("slot", null)
  *    )
  *  )
  * )
  */
-export function createElement(type, props, ...children): DidactElement {
+export function createElement(type: HostComponentType, props, ...children): DsElement {
   return {
     type,
     props: {
@@ -64,7 +65,7 @@ export function createElement(type, props, ...children): DidactElement {
   };
 }
 
-function createTextElement(text: string): DidactElement {
+function createTextElement(text: string): DsElement {
   return {
     type: 'TEXT_ELEMENT',
     props: {

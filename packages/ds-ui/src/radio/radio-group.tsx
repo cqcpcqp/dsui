@@ -1,15 +1,15 @@
-import { Component, Didact } from 'ds-core';
+import { Component } from 'ds-core';
 
 import style from './radio-group.scss';
 
-import DsRadioItem from './radio-item';
+import { DsRadioItem } from './radio-item';
 
 @Component({
   select: 'ds-radio-group',
   style,
   template: `<slot></slot>`,
 })
-export default class DsRadioGroup extends HTMLElement {
+export class DsRadioGroup extends HTMLElement {
   static get observedAttributes() {
     return ['size'];
   }

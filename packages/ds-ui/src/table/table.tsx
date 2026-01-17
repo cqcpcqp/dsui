@@ -1,14 +1,14 @@
-import { Component, Didact, input } from 'ds-core';
+import { Component, Ds, input } from 'ds-core';
 import style from './table.scss';
 
 @Component({
   select: 'ds-table',
   style,
 })
-export default class DsTable extends HTMLElement {
-  rows = input([]);
+export class DsTable extends HTMLElement {
+  $rows = input([], { alias: 'row' });
 
-  heads = input([]);
+  $heads = input([], { alias: 'heads' });
 
   constructor() {
     super();
@@ -19,12 +19,12 @@ export default class DsTable extends HTMLElement {
   }
 
   private _render() {
-    Didact.render(this.render(), this.shadowRoot as any);
+    Ds.render(this.render(), this.shadowRoot as any);
   }
 
   render() {
-    const rows = this.rows();
-    const heads = this.heads();
+    const rows = this.$rows();
+    const heads = this.$heads();
 
     return (
       <div className="table-container">

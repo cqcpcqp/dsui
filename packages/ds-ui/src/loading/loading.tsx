@@ -8,7 +8,7 @@ import style from './loading.scss';
     <circle cx="50%" cy="50%" r="20" fill="none" />
   </svg>`,
 })
-export default class DsLoading extends HTMLElement {
+export class DsLoading extends HTMLElement {
   static get observedAttributes(): string[] {
     return ['color', 'size'];
   }

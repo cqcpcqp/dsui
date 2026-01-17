@@ -1,4 +1,4 @@
-import { Component, Didact, input } from 'ds-core';
+import { Component, Ds, input, model } from 'ds-core';
 
 import style from './input.scss';
 
@@ -6,23 +6,11 @@ import style from './input.scss';
   select: 'ds-input',
   style,
 })
-export default class DsInput extends HTMLElement {
-  placeholder = input('');
+export class DsInput extends HTMLElement {
+  $placeholder = input('', { alias: 'placeholder' });
 
-  private _value = '';
-
-  get value() {
-    return this._value;
-  }
-
-  set value(val: string) {
-    this._value = val;
-    /**
-     * The current design is to render anyway. In theory, only the content coming in from the outside
-     * should be rendered, and the content inside should not be rendered.
-     */
-    this._render();
-  }
+  // TODO(cqcpcqp) 这个model变了 很显然并不需要重新渲染
+  $value = model<string>('');
 
   constructor() {
     super();
@@ -34,16 +22,26 @@ export default class DsInput extends HTMLElement {
   }
 
   private _render() {
-    Didact.render(this.render(), this.shadowRoot as any);
+    Ds.render(this.render(), this.shadowRoot as any);
   }
 
+  // handleChange(e) {
+  //   this.value = e.target.value;
+  // }
+
   render() {
-    const handleChange = (e) => (this.value = e.target.value);
+    // TODO(cqcpcqp) 这个handleChange还不能弄成上面那个类的属性 为啥？？
+    const handleChange = (e) => this.$value.set(e.target.value);
+
     return (
       <div className="input-group">
         {/* prefix */}
         {/* {<svg></svg>} */}
-        <input value={this.value} onInput={handleChange} placeholder={this.placeholder()}></input>
+        <input
+          value={this.$value()}
+          onInput={handleChange}
+          placeholder={this.$placeholder()}
+        ></input>
         {/* suffix */}
         {/* <svg></svg> */}
         {/* error or tip */}

@@ -1,4 +1,4 @@
-import { Component, Didact } from 'ds-core';
+import { Component, Ds } from 'ds-core';
 
 import style from './option.scss';
 
@@ -6,7 +6,7 @@ import style from './option.scss';
   select: 'ds-option',
   style,
 })
-export default class DsOption extends HTMLElement {
+export class DsOption extends HTMLElement {
   static get observedAttributes() {
     return ['size', 'placeholder'];
   }
@@ -39,7 +39,7 @@ export default class DsOption extends HTMLElement {
   }
 
   private _render() {
-    Didact.render(this.render(), this.shadowRoot as any);
+    Ds.render(this.render(), this.shadowRoot as any);
   }
 
   render() {

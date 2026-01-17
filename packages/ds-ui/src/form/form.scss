@@ -1,0 +1,9 @@
+@import '../styles/util.scss';
+
+:host * {
+  box-sizing: border-box;
+}
+
+.form-item {
+  display: flex;
+}
