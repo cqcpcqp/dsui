@@ -1,4 +1,5 @@
 import { FiberType, HostComponentType, Fiber } from './model';
+import { COMPONENT_INSTANCE_SYMBOL } from './symbol';
 
 const isEvent = (key) => key.startsWith('on');
 const isProperty = (key) => key !== 'children' && !isEvent(key);
@@ -69,7 +70,46 @@ export function updateDom(dom, prevProps, nextProps) {
     .filter(isNew(prevProps, nextProps))
     .forEach((name) => {
       const eventType = name.toLowerCase().substring(2);
-      dom.addEventListener(eventType, nextProps[name]);
+      const callback = nextProps[name];
+
+      // 自动绑定组件实例的 this 不然的话对于
+      // <input onInput={this.handleChange}></input>
+      // handleChange中的this其实指向的是input元素而不是组件实例
+      // 需要向上查找 DOM 树，找到最近的包含 __componentInstance 的组件
+      const getComponentInstance = (element: Node): any => {
+        let current: Node | null = element;
+
+        while (current) {
+          if ((current as any)[COMPONENT_INSTANCE_SYMBOL]) {
+            return (current as any)[COMPONENT_INSTANCE_SYMBOL];
+          }
+
+          // 向上查找，包括跨越 shadow DOM 边界
+          // 如果在 shadow DOM 中，查找 host
+          if ((current as any).assignedSlot) {
+            current = (current as any).assignedSlot;
+          } else if ((current as any).getRootNode) {
+            const root = (current as any).getRootNode();
+            if (root instanceof ShadowRoot) {
+              current = root.host;
+            } else {
+              current = (current as any).parentNode;
+            }
+          } else {
+            current = (current as any).parentNode;
+          }
+        }
+
+        return null;
+      };
+
+      dom.addEventListener(eventType, function (event) {
+        const componentInstance = getComponentInstance(dom);
+        if (componentInstance) {
+          return callback.call(componentInstance, event);
+        }
+        return callback.call(this, event);
+      });
     });
 }
 

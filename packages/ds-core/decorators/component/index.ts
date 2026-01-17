@@ -1,5 +1,6 @@
 import { DEFAULT_BINDING_KEY } from '../../signal/model';
 import { INPUT_SIGNAL_SYMBOL, SIGNAL_ALIAS_SYMBOL, MODEL_SIGNAL_SYMBOL } from '../../signal/symbol';
+import { COMPONENT_INSTANCE_SYMBOL } from '../../symbol';
 
 const getTemplateIdBySelect = (select) => `${select}-template`;
 
@@ -97,6 +98,9 @@ export const Component = (object: ComponentInfo) => {
 
       constructor(...args: any[]) {
         super(...args);
+
+        // 保存组件实例到 DOM 上，用于事件处理时自动绑定 this
+        (this as any)[COMPONENT_INSTANCE_SYMBOL] = this;
 
         // 在super后执行，意味着无法在constructor中正常使用shadowRoot
         this._appendTemplate();

@@ -25,21 +25,18 @@ export class DsInput extends HTMLElement {
     Ds.render(this.render(), this.shadowRoot as any);
   }
 
-  // handleChange(e) {
-  //   this.value = e.target.value;
-  // }
+  handleChange(e) {
+    this.$value.set(e.target.value);
+  }
 
   render() {
-    // TODO(cqcpcqp) 这个handleChange还不能弄成上面那个类的属性 为啥？？
-    const handleChange = (e) => this.$value.set(e.target.value);
-
     return (
       <div className="input-group">
         {/* prefix */}
         {/* {<svg></svg>} */}
         <input
           value={this.$value()}
-          onInput={handleChange}
+          onInput={this.handleChange}
           placeholder={this.$placeholder()}
         ></input>
         {/* suffix */}

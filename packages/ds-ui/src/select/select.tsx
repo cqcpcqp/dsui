@@ -78,16 +78,19 @@ export class DsSelect extends HTMLElement {
     Ds.render(this.render(), this.shadowRoot as any);
   }
 
-  render() {
-    const handleChange = (e) => {};
-    const handleClick = () => (this.isOpen = true);
+  handleClick() {
+    this.isOpen = true;
+  }
 
+  handleChange() {}
+
+  render() {
     return (
       <div className="select-group">
         <input
           value={this.$value()}
-          onInput={handleChange}
-          onClick={handleClick}
+          onInput={this.handleChange}
+          onClick={this.handleClick}
           placeholder={this.getAttribute('placeholder') || ''}
           readOnly
         ></input>
