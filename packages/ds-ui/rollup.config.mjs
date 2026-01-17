@@ -13,7 +13,7 @@ const option = {
   watch: isDev
     ? {
         include: ['src/**', '../ds-core/**', '../ds-headless/**'],
-        exclude: ['node_modules/**', '../ds-core/node_modules/**'],
+        exclude: ['node_modules/**', '../ds-core/node_modules/**', '../ds-core/__tests__/**'],
       }
     : false,
   input: 'src/index.ts',

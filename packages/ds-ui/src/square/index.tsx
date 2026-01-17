@@ -1,5 +1,5 @@
-import { Component } from 'ds-core';
-import { Didact } from 'ds-core';
+import { Component, computed, effect, signal } from 'ds-core';
+import { Ds } from 'ds-core';
 
 import style from './index.scss';
 
@@ -7,36 +7,38 @@ import style from './index.scss';
   select: 'ds-square',
   style,
 })
-export default class Square extends HTMLElement {
+export class Square extends HTMLElement {
   static get observedAttributes() {
     return ['color', 'size'];
   }
+
+  count = signal(1);
+
+  computedCount = computed(() => {
+    return this.count() * 2;
+    this._render();
+  });
 
   constructor() {
     super();
   }
 
   connectedCallback() {
-    Didact.render(this.render(), this.shadowRoot as any);
+    effect(() => {
+      this._render();
+    });
   }
 
-  disconnectedCallback() {}
-
-  adoptedCallback() {}
-
-  attributeChangedCallback(name, oldValue, newValue) {}
+  _render() {
+    Ds.render(this.render(), this.shadowRoot as any);
+  }
 
   render() {
-    return <CounterSquare />;
+    const count = this.computedCount();
+    return (
+      <div onClick={() => this.count.set(this.count() + 1)} className="counter-square">
+        <h1>{count}</h1>
+      </div>
+    );
   }
-}
-
-function CounterSquare() {
-  const [state, setState] = Didact.useState(1);
-
-  return (
-    <div onClick={() => setState((c: number) => c + 1)} className="counter-square">
-      <h1>{state}</h1>
-    </div>
-  );
 }

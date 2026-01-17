@@ -1,4 +1,4 @@
-import { Component, Didact } from 'ds-core';
+import { Component, Ds, model } from 'ds-core';
 import { Mask } from 'ds-headless';
 
 import style from './select.scss';
@@ -22,23 +22,12 @@ import style from './select.scss';
     </svg>
   `,
 })
-export default class DsSelect extends HTMLElement {
+export class DsSelect extends HTMLElement {
   static get observedAttributes() {
     return ['size', 'placeholder'];
   }
 
-  private _value;
-
-  get value() {
-    return this._value;
-  }
-
-  set value(val: string) {
-    if (this._value !== val) {
-      this._value = val;
-      this._render();
-    }
-  }
+  $value = model(undefined);
 
   private _isOpen = false;
 
@@ -59,7 +48,7 @@ export default class DsSelect extends HTMLElement {
     super();
 
     this.addEventListener('optionSelected', (e: CustomEvent) => {
-      this.value = e.detail.value;
+      this.$value.set(e.detail.value);
       this.isOpen = false;
       this.mask?.destroy();
       e.stopPropagation();
@@ -86,7 +75,7 @@ export default class DsSelect extends HTMLElement {
   disconnectedCallback() {}
 
   private _render() {
-    Didact.render(this.render(), this.shadowRoot as any);
+    Ds.render(this.render(), this.shadowRoot as any);
   }
 
   render() {
@@ -96,7 +85,7 @@ export default class DsSelect extends HTMLElement {
     return (
       <div className="select-group">
         <input
-          value={this.value}
+          value={this.$value()}
           onInput={handleChange}
           onClick={handleClick}
           placeholder={this.getAttribute('placeholder') || ''}

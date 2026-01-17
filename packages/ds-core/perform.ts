@@ -1,5 +1,4 @@
 import { Fiber } from './model';
-import { updateFunctionComponent } from './hook';
 import { createDom } from './dom';
 import { reconcileChildren } from './reconcile';
 
@@ -33,4 +32,13 @@ function updateHostComponent(fiber: Fiber) {
 
   const elements = fiber.props.children;
   reconcileChildren(fiber, elements);
+}
+
+function updateFunctionComponent(fiber: Fiber) {
+  if (typeof fiber.type !== 'function') {
+    throw new Error('Function component fiber type must be a function');
+  }
+
+  const children = [fiber.type(fiber.props)];
+  reconcileChildren(fiber, children);
 }

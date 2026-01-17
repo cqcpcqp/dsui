@@ -2,7 +2,7 @@
   "extends": "../tsconfig.setting.json",
   "compilerOptions": {
     "jsx": "react",
-    "jsxFactory": "Didact.createElement"
+    "jsxFactory": "Ds.createElement"
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx"],
   "exclude": ["node_modules"]

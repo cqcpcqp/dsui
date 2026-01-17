@@ -1,10 +1,10 @@
 import { getRenderContextByFiber } from './context';
-import { Fiber, DidactElement } from './model';
+import { Fiber, DsElement } from './model';
 
 /**
  * reconcile old fiber with new elements
  */
-export function reconcileChildren(wipFiber: Fiber, elements: DidactElement[]) {
+export function reconcileChildren(wipFiber: Fiber, elements: DsElement[]) {
   const { deletions } = getRenderContextByFiber(wipFiber);
 
   let index = 0;

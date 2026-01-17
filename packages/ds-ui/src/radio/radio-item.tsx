@@ -1,5 +1,5 @@
-import { Component, Didact } from 'ds-core';
-import DsRadioGroup from './radio-group';
+import { Component, Ds } from 'ds-core';
+import { DsRadioGroup } from './radio-group';
 
 import style from './radio-item.scss';
 
@@ -7,7 +7,7 @@ import style from './radio-item.scss';
   select: 'ds-radio-item',
   style,
 })
-export default class DsRadioItem extends HTMLElement {
+export class DsRadioItem extends HTMLElement {
   static get observedAttributes() {
     return ['size'];
   }
@@ -51,13 +51,12 @@ export default class DsRadioItem extends HTMLElement {
   }
 
   connectedCallback() {
-    console.log('item-tsx ?');
     this.classList.add('ds-radio-item');
     this._render();
   }
 
   private _render() {
-    Didact.render(this.render(), this.shadowRoot as any);
+    Ds.render(this.render(), this.shadowRoot as any);
   }
 
   render() {

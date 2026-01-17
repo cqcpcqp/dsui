@@ -1,13 +1,23 @@
-import { render } from './render';
-import { createElement } from './jsx/createElement';
+import { createInjectToken, inject, provide } from './ctx';
 import { Component } from './decorators/component';
-import { input, effect } from './signal';
-import { useState } from './hook';
+import { createElement } from './jsx/createElement';
+import { render } from './render';
+import { computed, effect, input, model, signal } from './signal';
 
-const Didact = {
+const Ds = {
   createElement,
-  useState,
   render,
 };
 
-export { Didact, Component, input, effect };
+export {
+  Ds,
+  Component,
+  input,
+  effect,
+  computed,
+  createInjectToken,
+  provide,
+  inject,
+  signal,
+  model,
+};

@@ -4,7 +4,7 @@ export default {
     return {};
   },
 
-  mounted() {},
+  mounted() { },
 };
 </script>
 
@@ -12,6 +12,5 @@ export default {
   <div class="square-doc">
     <h1>Square</h1>
     <ds-square style="margin-bottom: 20px" :color="'red'"></ds-square>
-    <ds-square></ds-square>
   </div>
 </template>

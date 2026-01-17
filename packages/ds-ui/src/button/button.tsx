@@ -1,4 +1,4 @@
-import { Component, Didact } from 'ds-core';
+import { Component, Ds } from 'ds-core';
 
 import style from './button.scss';
 
@@ -7,7 +7,7 @@ import style from './button.scss';
   style,
   template: `<button><slot></slot></button>`,
 })
-export default class DsButton extends HTMLElement {
+export class DsButton extends HTMLElement {
   static get observedAttributes(): string[] {
     return ['category', 'disabled', 'icon', 'loading', 'outlined', 'size'];
   }
