@@ -51,7 +51,7 @@ export const DEFAULT_BINDING_KEY = 'value';
  * // <my-element v-model="parentValue"></my-element>
  */
 export function model<T>(
-  initialValue: T,
+  initialValue?: T,
   options?: {
     alias: string;
   },
