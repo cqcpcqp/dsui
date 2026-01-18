@@ -1,6 +1,7 @@
-import { Component, Ds } from 'ds-core';
+import { Component, Ds, effect, inject, input, signal } from 'ds-core';
 
 import style from './option.scss';
+import { selectInjectToken } from './select';
 
 @Component({
   select: 'ds-option',
@@ -11,49 +12,35 @@ export class DsOption extends HTMLElement {
     return ['size', 'placeholder'];
   }
 
-  private _value = '';
+  $value = input('', { alias: 'value' });
 
-  get value() {
-    return this._value;
-  }
-
-  set value(val: string) {
-    if (this._value !== val) {
-      this._value = val;
-      this._render();
-    }
-  }
+  $dsSelectInstance = signal();
 
   constructor() {
     super();
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    this._render();
-  }
-
   connectedCallback() {
     this.classList.add('ds-option');
 
-    this._render();
+    this.$dsSelectInstance.set(inject.call(this, selectInjectToken).instance);
+
+    effect(() => {
+      this._render();
+    });
   }
 
   private _render() {
     Ds.render(this.render(), this.shadowRoot as any);
   }
 
-  render() {
-    const handleClick = () => {
-      const event = new CustomEvent('optionSelected', {
-        detail: { value: this.value },
-        bubbles: true,
-        composed: true,
-      });
-      this.dispatchEvent(event);
-    };
+  handleClick() {
+    this.$dsSelectInstance().selectOption(this.$value());
+  }
 
+  render() {
     return (
-      <div className="select-option" onClick={handleClick}>
+      <div className="select-option" onClick={this.handleClick}>
         <slot></slot>
       </div>
     );

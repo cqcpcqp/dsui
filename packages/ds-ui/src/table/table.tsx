@@ -1,4 +1,4 @@
-import { Component, Ds, input } from 'ds-core';
+import { Component, Ds, effect, input } from 'ds-core';
 import style from './table.scss';
 
 @Component({
@@ -15,7 +15,9 @@ export class DsTable extends HTMLElement {
   }
 
   connectedCallback() {
-    this._render();
+    effect(() => {
+      this._render();
+    });
   }
 
   private _render() {

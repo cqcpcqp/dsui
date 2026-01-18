@@ -1,7 +1,9 @@
-import { Component, Ds, model } from 'ds-core';
+import { Component, createInjectToken, Ds, effect, input, model, provide, signal } from 'ds-core';
 import { Mask } from 'ds-headless';
 
 import style from './select.scss';
+
+export const selectInjectToken = createInjectToken('select');
 
 @Component({
   select: 'ds-select',
@@ -29,60 +31,51 @@ export class DsSelect extends HTMLElement {
 
   $value = model(undefined);
 
-  private _isOpen = false;
+  $placeholder = input('', { alias: 'placeholder' });
 
-  get isOpen() {
-    return this._isOpen;
-  }
-
-  set isOpen(value: boolean) {
-    if (this._isOpen !== value) {
-      this._isOpen = value;
-      this._render();
-    }
-  }
+  $open = signal(false);
 
   mask: Mask;
 
   constructor() {
     super();
 
-    this.addEventListener('optionSelected', (e: CustomEvent) => {
-      this.$value.set(e.detail.value);
-      this.isOpen = false;
-      this.mask?.destroy();
-      e.stopPropagation();
-      /**
-       * 手动触发一个input时间来通知Vue值已改变
-       * Q&A:
-       * 为什么input.tsx中就不需要dispatch一个event出去？
-       * 因为input.tsx是直接在原生input里面进行输入的，本身就会触发原生时间，Vue感知的到
-       */
-      this.dispatchEvent(new Event('input'));
+    provide.call(this, selectInjectToken, {
+      instance: this,
     });
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    this._render();
   }
 
   connectedCallback() {
     this.classList.add('ds-select');
 
-    this._render();
+    effect(() => {
+      this._render();
+    });
   }
-
-  disconnectedCallback() {}
 
   private _render() {
     Ds.render(this.render(), this.shadowRoot as any);
   }
 
   handleClick() {
-    this.isOpen = true;
+    this.$open.set(true);
   }
 
   handleChange() {}
+
+  selectOption(value) {
+    this.$value.set(value);
+    this.$open.set(false);
+    this.mask?.destroy();
+
+    /**
+     * 手动触发一个input时间来通知Vue值已改变
+     * Q&A:
+     * 为什么input.tsx中就不需要dispatch一个event出去？
+     * 因为input.tsx是直接在原生input里面进行输入的，本身就会触发原生时间，Vue感知的到
+     */
+    this.dispatchEvent(new Event('input'));
+  }
 
   render() {
     return (
@@ -91,7 +84,7 @@ export class DsSelect extends HTMLElement {
           value={this.$value()}
           onInput={this.handleChange}
           onClick={this.handleClick}
-          placeholder={this.getAttribute('placeholder') || ''}
+          placeholder={this.$placeholder()}
           readOnly
         ></input>
         {/**
@@ -103,9 +96,9 @@ export class DsSelect extends HTMLElement {
          * </ds-icon>
          */}
         <svg aria-hidden="true" className="select-arrow">
-          <use href={this._isOpen ? '#icon-up' : '#icon-down'}></use>
+          <use href={this.$open() ? '#icon-up' : '#icon-down'}></use>
         </svg>
-        {this._isOpen ? <SelectDropdown selectInstance={this}></SelectDropdown> : null}
+        {this.$open() ? <SelectDropdown selectInstance={this}></SelectDropdown> : null}
       </div>
     );
   }
@@ -120,7 +113,7 @@ function SelectDropdown(props) {
   };
 
   selectInstance.mask = new Mask().create();
-  selectInstance.mask.close(() => (selectInstance.isOpen = false));
+  selectInstance.mask.close(() => selectInstance.$open.set(false));
 
   return (
     <div className="select-dropdown" style={positionStyle}>

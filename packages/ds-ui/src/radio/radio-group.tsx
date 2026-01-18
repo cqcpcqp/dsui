@@ -2,8 +2,6 @@ import { Component, createInjectToken, model, provide } from 'ds-core';
 
 import style from './radio-group.scss';
 
-import { DsRadioItem } from './radio-item';
-
 export const radioGroupInjectToken = createInjectToken('radio-group');
 
 @Component({
@@ -17,8 +15,6 @@ export class DsRadioGroup extends HTMLElement {
   }
 
   $value = model();
-
-  radioItems: DsRadioItem[] = [];
 
   constructor() {
     super();
