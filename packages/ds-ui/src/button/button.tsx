@@ -1,4 +1,4 @@
-import { Component, Ds } from 'ds-core';
+import { Component } from 'ds-core';
 
 import style from './button.scss';
 

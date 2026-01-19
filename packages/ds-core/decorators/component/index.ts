@@ -1,5 +1,6 @@
+import { Ds, effect } from '../..';
 import { DEFAULT_BINDING_KEY } from '../../signal/model';
-import { INPUT_SIGNAL_SYMBOL, SIGNAL_ALIAS_SYMBOL, MODEL_SIGNAL_SYMBOL } from '../../signal/symbol';
+import { INPUT_SIGNAL_SYMBOL, MODEL_SIGNAL_SYMBOL, SIGNAL_ALIAS_SYMBOL } from '../../signal/symbol';
 import { COMPONENT_INSTANCE_SYMBOL } from '../../symbol';
 
 const getTemplateIdBySelect = (select) => `${select}-template`;
@@ -70,6 +71,19 @@ export const Component = (object: ComponentInfo) => {
     const template = object.template || '';
     insertTemplate(object.select, style, template);
 
+    const userDefinedConnectedCallback = constructor.prototype.connectedCallback;
+    constructor.prototype.connectedCallback = function () {
+      if (userDefinedConnectedCallback) {
+        userDefinedConnectedCallback.call(this);
+      }
+
+      // 在connectedCallback中内置变更检测逻辑，通过effect使得render中以来的所有signal型有变更
+      // 则全量的（非细粒度）的进行一次render
+      effect(() => {
+        this._render();
+      });
+    };
+
     const extendedClass = class extends constructor {
       private _appendTemplate() {
         this.attachShadow({ mode: 'open' });
@@ -96,6 +110,14 @@ export const Component = (object: ComponentInfo) => {
         });
       }
 
+      private _patchRender() {
+        this._render = () => {
+          if (typeof this.render === 'function') {
+            Ds.render(this.render(), this.shadowRoot as any);
+          }
+        };
+      }
+
       constructor(...args: any[]) {
         super(...args);
 
@@ -106,6 +128,8 @@ export const Component = (object: ComponentInfo) => {
         this._appendTemplate();
 
         this._patchInputProperty();
+
+        this._patchRender();
       }
     } as any;
 

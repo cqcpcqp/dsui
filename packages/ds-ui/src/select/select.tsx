@@ -26,7 +26,7 @@ export const selectInjectToken = createInjectToken('select');
 })
 export class DsSelect extends HTMLElement {
   static get observedAttributes() {
-    return ['size', 'placeholder'];
+    return ['size'];
   }
 
   $value = model(undefined);
@@ -47,14 +47,6 @@ export class DsSelect extends HTMLElement {
 
   connectedCallback() {
     this.classList.add('ds-select');
-
-    effect(() => {
-      this._render();
-    });
-  }
-
-  private _render() {
-    Ds.render(this.render(), this.shadowRoot as any);
   }
 
   handleClick() {

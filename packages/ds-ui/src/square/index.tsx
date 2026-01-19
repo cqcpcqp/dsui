@@ -12,32 +12,24 @@ export class Square extends HTMLElement {
     return ['color', 'size'];
   }
 
-  count = signal(1);
+  $count = signal(1);
 
-  computedCount = computed(() => {
-    return this.count() * 2;
-    this._render();
+  $computedCount = computed(() => {
+    return this.$count() * 2;
   });
 
   constructor() {
     super();
   }
 
-  connectedCallback() {
-    effect(() => {
-      this._render();
-    });
-  }
-
-  _render() {
-    Ds.render(this.render(), this.shadowRoot as any);
+  clickHandle() {
+    this.$count.set(this.$count() + 1);
   }
 
   render() {
-    const count = this.computedCount();
     return (
-      <div onClick={() => this.count.set(this.count() + 1)} className="counter-square">
-        <h1>{count}</h1>
+      <div onClick={this.clickHandle} className="counter-square">
+        <h1>{this.$computedCount()}</h1>
       </div>
     );
   }

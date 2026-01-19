@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      selected: 'select',
+      selected: 'square',
     };
   },
 

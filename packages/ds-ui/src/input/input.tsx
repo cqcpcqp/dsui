@@ -18,11 +18,6 @@ export class DsInput extends HTMLElement {
 
   connectedCallback() {
     this.classList.add('ds-input');
-    this._render();
-  }
-
-  private _render() {
-    Ds.render(this.render(), this.shadowRoot as any);
   }
 
   handleChange(e) {

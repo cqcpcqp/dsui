@@ -24,14 +24,6 @@ export class DsOption extends HTMLElement {
     this.classList.add('ds-option');
 
     this.$dsSelectInstance.set(inject.call(this, selectInjectToken).instance);
-
-    effect(() => {
-      this._render();
-    });
-  }
-
-  private _render() {
-    Ds.render(this.render(), this.shadowRoot as any);
   }
 
   handleClick() {

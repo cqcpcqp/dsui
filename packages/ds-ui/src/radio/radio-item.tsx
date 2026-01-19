@@ -28,14 +28,6 @@ export class DsRadioItem extends HTMLElement {
     this.classList.add('ds-radio-item');
 
     this.$radioCtx.set(inject.call(this, radioGroupInjectToken));
-
-    effect(() => {
-      this._render();
-    });
-  }
-
-  private _render() {
-    Ds.render(this.render(), this.shadowRoot as any);
   }
 
   clickHandler(e) {

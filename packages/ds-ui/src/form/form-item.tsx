@@ -1,4 +1,4 @@
-import { Component, computed, Ds, effect, inject, input, signal } from 'ds-core';
+import { Component, computed, Ds, inject, input, signal } from 'ds-core';
 import { formInjectToken } from './form';
 import style from './form-item.scss';
 
@@ -35,14 +35,6 @@ export class DsFormItem extends HTMLElement {
     this.classList.add('ds-form-item');
 
     this.$formCtx.set(inject.call(this, formInjectToken));
-
-    effect(() => {
-      this._render();
-    });
-  }
-
-  private _render() {
-    Ds.render(this.render(), this.shadowRoot as any);
   }
 
   render() {
