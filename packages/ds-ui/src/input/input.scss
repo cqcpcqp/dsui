@@ -2,30 +2,56 @@
 
 .input-group {
   display: flex;
+  align-items: center;
+  position: relative;
+  border-radius: $radius-md;
+  border: 1px solid $border-default;
+  background-color: $bg-body;
+  gap: $margin-sm;
 
   input {
     flex-grow: 1;
-    outline: none;
+    border: none;
     border-radius: $radius-md;
-    border: 1px solid $border-default;
-    background-color: $bg-body;
+    outline: none;
     display: inline-block;
     align-items: center;
     justify-content: flex-start;
-    min-height: 32px;
-    padding: $padding-xsm $padding-sm;
+    min-height: calc($input-md - 2px);
     line-height: $line-md;
     font-size: $font-md;
     color: #060a26;
+    width: 0;
+    padding: 0 $margin-sm;
+
     -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
 
-  input:hover {
+  &:hover {
     border: 1px solid $border-primary !important;
   }
 
-  input:focus-visible {
+  &:has(input:focus-visible) {
     border: 1px solid $border-primary !important;
+  }
+
+  .eye {
+    flex-shrink: 0;
+    margin-right: $margin-sm;
+    fill: $brand-default;
+    width: $icon-md;
+    height: $icon-md;
+    cursor: pointer;
+    user-select: none; // 阻止文本选择，避免双击时选中页面其他文字
+    -webkit-user-select: none; // Safari, Chrome
+    -moz-user-select: none; // Firefox
+    -ms-user-select: none; // IE/Edge
+
+    &:hover {
+      fill: $color-grey-8;
+    }
   }
 }
 
@@ -37,19 +63,35 @@
 }
 
 :host([size='sm']) {
-  .input-group input {
-    min-height: 26px;
-    padding: 0 $padding-sm;
-    line-height: $line-sm;
-    font-size: $font-sm;
+  .input-group {
+    input {
+      padding: 0 $margin-xsm;
+      min-height: calc($input-sm - 2px);
+      line-height: $line-sm;
+      font-size: $font-sm;
+    }
+
+    .eye {
+      margin-right: $margin-xsm;
+      width: $icon-md;
+      height: $icon-md;
+    }
   }
 }
 
 :host([size='lg']) {
-  .input-group input {
-    min-height: 40px;
-    padding: $padding-xsm $padding-md;
-    line-height: $line-base;
-    font-size: $font-base;
+  .input-group {
+    input {
+      padding: 0 $margin-md;
+      min-height: calc($input-lg - 2px);
+      line-height: $line-base;
+      font-size: $font-base;
+    }
+
+    .eye {
+      margin-right: $margin-md;
+      width: $icon-lg;
+      height: $icon-lg;
+    }
   }
 }
