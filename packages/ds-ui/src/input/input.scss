@@ -53,17 +53,8 @@
       fill: $color-grey-8;
     }
   }
-}
 
-// 因为shadow dom隔绝了外部CSS，无法使用全局的样式变量，所以reset.scss中的代码都不奏效，reset相关可能必须要写在基类或者装饰器中
-// 或者就像当前这样，直接写在每个组件的scss中，缺点是无法复用，优点还是隔离，隔离带来的好处就是代码量其实变小了。
-// 不对 可能根本就不需要reset.scss
-:host * {
-  box-sizing: border-box;
-}
-
-:host([size='sm']) {
-  .input-group {
+  &-sm {
     input {
       padding: 0 $margin-xsm;
       min-height: calc($input-sm - 2px);
@@ -77,10 +68,8 @@
       height: $icon-md;
     }
   }
-}
 
-:host([size='lg']) {
-  .input-group {
+  &-lg {
     input {
       padding: 0 $margin-md;
       min-height: calc($input-lg - 2px);
@@ -94,4 +83,11 @@
       height: $icon-lg;
     }
   }
+}
+
+// 因为shadow dom隔绝了外部CSS，无法使用全局的样式变量，所以reset.scss中的代码都不奏效，reset相关可能必须要写在基类或者装饰器中
+// 或者就像当前这样，直接写在每个组件的scss中，缺点是无法复用，优点还是隔离，隔离带来的好处就是代码量其实变小了。
+// 不对 可能根本就不需要reset.scss
+:host * {
+  box-sizing: border-box;
 }

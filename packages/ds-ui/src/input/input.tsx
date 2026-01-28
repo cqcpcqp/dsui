@@ -1,4 +1,5 @@
-import { Component, Ds, effect, input, model, signal } from 'ds-core';
+import { Component, computed, Ds, effect, inject, input, model, signal } from 'ds-core';
+import { formInjectToken } from '../form/form';
 
 import style from './input.scss';
 
@@ -37,7 +38,13 @@ export class DsInput extends HTMLElement {
 
   $type = input('text', { alias: 'type' });
 
+  $size = input(null, { alias: 'size' });
+
   $currentType = signal(this.$type());
+
+  $formCtx = signal();
+
+  $_size = computed(() => this.$size() || this.$formCtx()?.$size() || 'md');
 
   constructor() {
     super();
@@ -49,6 +56,8 @@ export class DsInput extends HTMLElement {
 
   connectedCallback() {
     this.classList.add('ds-input');
+
+    this.$formCtx.set(inject.call(this, formInjectToken));
   }
 
   handleChange(e) {
@@ -61,9 +70,7 @@ export class DsInput extends HTMLElement {
 
   render() {
     return (
-      <div className="input-group">
-        {/* prefix */}
-        {/* {<svg></svg>} */}
+      <div className={`input-group ${this.$_size() ? 'input-group-' + this.$_size() : ''}`}>
         <input
           value={this.$value()}
           onInput={this.handleChange}
@@ -75,7 +82,6 @@ export class DsInput extends HTMLElement {
             <use href={this.$currentType() === 'password' ? '#icon-eye' : '#icon-eye-close'}></use>
           </svg>
         ) : null}
-        {/* error or tip */}
       </div>
     );
   }
