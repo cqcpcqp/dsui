@@ -7,6 +7,7 @@ export default {
       nullValue: null,
       undefinedValue: undefined,
       placeholder: 'placeholder',
+      num: 0,
     };
   },
   mounted() { },
@@ -26,6 +27,9 @@ export default {
       <h2>密码框</h2>
       <ds-input :type="'password'" placeholder="password" size="md" v-model="withInitialValue"></ds-input>
 
+      <h2>数字</h2>
+      <ds-input-number placeholder="number" size="md" v-model="num" min="0" max="100"></ds-input-number>
+
       <h2>原生</h2>
       <input type="text" style="height: 32px; line-height: 22px" v-model="withInitialValue" />
 
@@ -41,7 +45,9 @@ export default {
 </template>
 
 <style scoped>
-.ds-input {
+.ds-input,
+.ds-input-number,
+.ds-input-area {
   width: 200px;
 }
 </style>

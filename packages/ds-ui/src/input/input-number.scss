@@ -1,0 +1,114 @@
+@import '../styles/util.scss';
+
+.input-group {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-radius: $radius-md;
+  border: 1px solid $border-default;
+  background-color: $bg-body;
+  gap: $margin-sm;
+
+  input {
+    flex-grow: 1;
+    border: none;
+    border-radius: $radius-md;
+    outline: none;
+    display: inline-block;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: calc($input-md - 2px);
+    line-height: $line-md;
+    font-size: $font-md;
+    color: #060a26;
+    width: 0;
+    padding: 0 $margin-sm;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  &:hover {
+    border: 1px solid $border-primary !important;
+
+    .spinner-group {
+      opacity: 1;
+    }
+  }
+
+  &:has(input:focus-visible) {
+    border: 1px solid $border-primary !important;
+  }
+
+  .spinner-group {
+    width: 24px;
+    display: flex;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    flex-direction: column;
+    height: 100%;
+    border-left: 1px solid $border-default;
+    border-radius: 0 $radius-md $radius-md 0;
+    z-index: 1;
+    background-color: $bg-body;
+    transition: opacity 0.24s linear 0.1s;
+
+    span {
+      flex: 2;
+      height: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      user-select: none; // 阻止文本选择，避免双击时选中页面其他文字
+      -webkit-user-select: none; // Safari, Chrome
+      -moz-user-select: none; // Firefox
+      -ms-user-select: none; // IE/Edge
+
+      transition: all 0.1s linear;
+
+      svg {
+        fill: $brand-default;
+        width: $icon-sm;
+        height: $icon-sm;
+      }
+
+      &:first-of-type {
+        border-bottom: 1px solid $border-default;
+      }
+
+      &:hover {
+        flex: 3;
+
+        svg {
+          fill: $brand-primary;
+        }
+      }
+    }
+  }
+
+  &-sm {
+    input {
+      padding: 0 $margin-xsm;
+      min-height: calc($input-sm - 2px);
+      line-height: $line-sm;
+      font-size: $font-sm;
+    }
+  }
+
+  &-lg {
+    input {
+      padding: 0 $margin-md;
+      min-height: calc($input-lg - 2px);
+      line-height: $line-base;
+      font-size: $font-base;
+    }
+  }
+}
+
+:host * {
+  box-sizing: border-box;
+}
