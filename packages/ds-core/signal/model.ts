@@ -89,14 +89,16 @@ export function model<T>(
 
     // 触发 change 事件用于双向绑定（仅在浏览器环境中）
     if (componentRef && componentRef.dispatchEvent && typeof CustomEvent !== 'undefined') {
-      componentRef.dispatchEvent(
-        new CustomEvent('change', {
-          // Vue3可能会直接去读取 someWebComponent.value 而不是使用这个detail.value
-          detail: { value },
-          bubbles: true,
-          composed: true,
-        }),
-      );
+      /**
+       * 手动触发一个input时间来通知Vue值已改变
+       * Q&A:
+       * - 为什么input.tsx中就不需要dispatch一个event出去？
+       * - 因为input.tsx是直接在原生input里面进行输入的，本身就会触发原生时间，Vue感知的到
+       *
+       * - 为什么这个事件中不带value？
+       * - 因为Vue3可能会直接去读取 someWebComponent.value 而不是使用事件中的value
+       */
+      componentRef.dispatchEvent(new Event('input'));
     }
   };
 
