@@ -1,0 +1,61 @@
+@import '../styles/util.scss';
+
+.input-group {
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  border-radius: $radius-md;
+  border: 1px solid $border-default;
+  background-color: $bg-body;
+
+  textarea {
+    flex-grow: 1;
+    border: none;
+    border-radius: $radius-md;
+    outline: none;
+    min-height: calc($input-md - 2px);
+    line-height: $line-md;
+    font-size: $font-md;
+    color: #060a26;
+    padding: $margin-sm;
+    resize: vertical;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    &::placeholder {
+      color: $color-grey-5;
+    }
+  }
+
+  &:hover {
+    border: 1px solid $border-primary !important;
+  }
+
+  &:has(textarea:focus-visible) {
+    border: 1px solid $border-primary !important;
+  }
+
+  &-sm {
+    textarea {
+      padding: $margin-xsm;
+      min-height: calc($input-sm - 2px);
+      line-height: $line-sm;
+      font-size: $font-sm;
+    }
+  }
+
+  &-lg {
+    textarea {
+      padding: $margin-md;
+      min-height: calc($input-lg - 2px);
+      line-height: $line-base;
+      font-size: $font-base;
+    }
+  }
+}
+
+:host * {
+  box-sizing: border-box;
+}

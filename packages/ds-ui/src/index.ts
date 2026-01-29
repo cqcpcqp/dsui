@@ -3,6 +3,7 @@ import { DsColumn } from './column/column';
 import { DsColumnItem } from './column/column-item';
 import { DsInput } from './input/input';
 import { DsInputNumber } from './input/input-number';
+import { DsInputArea } from './input/input-area';
 import { DsSelect } from './select/select';
 import { DsOption } from './select/option';
 import { DsIcon } from './icon/icon';
@@ -22,6 +23,7 @@ export default {
   DsColumnItem,
   DsInput,
   DsInputNumber,
+  DsInputArea,
   DsSelect,
   DsOption,
   DsIcon,

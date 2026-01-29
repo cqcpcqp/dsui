@@ -8,6 +8,7 @@ export default {
       undefinedValue: undefined,
       placeholder: 'placeholder',
       num: 0,
+      text: 'some text',
     };
   },
   mounted() { },
@@ -30,6 +31,10 @@ export default {
       <h2>数字</h2>
       <ds-input-number placeholder="number" size="md" v-model="num" min="0" max="100"></ds-input-number>
 
+      <h2>文本</h2>
+      <ds-input-area placeholder="textarea" size="md" v-model="text"></ds-input-area>
+      <span>{{ text }}</span>
+
       <h2>原生</h2>
       <input type="text" style="height: 32px; line-height: 22px" v-model="withInitialValue" />
 
@@ -40,6 +45,8 @@ export default {
         <div contenteditable placeholder="Basic Usage" style="outline: 1px solid grey; width: 300px; padding: 4px 8px">
         </div>
       </fieldset>
+
+      <textarea name="" id=""></textarea>
     </ds-flex>
   </div>
 </template>

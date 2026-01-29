@@ -39,6 +39,10 @@ const switchFlex = () => {
           <ds-input-number></ds-input-number>
         </ds-form-item>
 
+        <ds-form-item label="Address">
+          <ds-input-area></ds-input-area>
+        </ds-form-item>
+
         <ds-form-item label="Company">
           <ds-select :placeholder="placeholder">
             <ds-option :value="0">Disney</ds-option>
