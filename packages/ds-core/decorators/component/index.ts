@@ -49,6 +49,13 @@ function patchInputProperty(c, property) {
     enumerable: true,
     configurable: true,
   });
+
+  // 如果外部通过attribute传入了初始值，则进行一次赋值
+  // 可能出现外部在patchInputProperty之前外部就进行patch的情况 例如vue会insertHtml会直接赋值给attribute
+  const attrValue = c.getAttribute(prop);
+  if (attrValue !== null) {
+    c[prop] = attrValue;
+  }
 }
 
 function patchModelProperty(c, property) {
@@ -63,6 +70,13 @@ function patchModelProperty(c, property) {
     enumerable: true,
     configurable: true,
   });
+
+  // 如果外部通过attribute传入了初始值，则进行一次赋值
+  // 可能出现外部在patchInputProperty之前外部就进行patch的情况 例如vue会insertHtml会直接赋值给attribute
+  const attrValue = c.getAttribute(prop);
+  if (attrValue !== null) {
+    c[prop] = attrValue;
+  }
 }
 
 export const Component = (object: ComponentInfo) => {
