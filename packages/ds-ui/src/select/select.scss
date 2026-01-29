@@ -22,8 +22,20 @@
     line-height: $line-md;
     font-size: $font-md;
     color: #060a26;
-    -webkit-appearance: none;
     cursor: pointer;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  .select-arrow {
+    vertical-align: -0.15em;
+    fill: $brand-default;
+    overflow: hidden;
+    flex-shrink: 0;
+    width: $icon-sm;
+    height: $icon-sm;
   }
 
   &:hover {
@@ -32,6 +44,34 @@
 
   &:focus-visible {
     border: 1px solid $border-primary !important;
+  }
+
+  &-sm {
+    input {
+      min-height: 26px;
+      padding: 0 $padding-sm;
+      line-height: $line-sm;
+      font-size: $font-sm;
+    }
+
+    .select-arrow {
+      width: $icon-xsm;
+      height: $icon-xsm;
+    }
+  }
+
+  &-lg {
+    input {
+      min-height: 40px;
+      padding: $padding-xsm $padding-md;
+      line-height: $line-base;
+      font-size: $font-base;
+    }
+
+    .select-arrow {
+      width: $icon-md;
+      height: $icon-md;
+    }
   }
 }
 
@@ -47,41 +87,6 @@
   font-size: $font-md;
 }
 
-.select-arrow {
-  vertical-align: -0.15em;
-  fill: $brand-default;
-  overflow: hidden;
-  flex-shrink: 0;
-  width: $icon-sm;
-  height: $icon-sm;
-}
-
 :host * {
   box-sizing: border-box;
-}
-
-:host([size='sm']) {
-  .select-group input {
-    min-height: 26px;
-    padding: 0 $padding-sm;
-    line-height: $line-sm;
-    font-size: $font-sm;
-  }
-  .select-arrow {
-    width: $icon-xsm;
-    height: $icon-xsm;
-  }
-}
-
-:host([size='lg']) {
-  .select-group input {
-    min-height: 40px;
-    padding: $padding-xsm $padding-md;
-    line-height: $line-base;
-    font-size: $font-base;
-  }
-  .select-arrow {
-    width: $icon-md;
-    height: $icon-md;
-  }
 }

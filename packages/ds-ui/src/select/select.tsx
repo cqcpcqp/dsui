@@ -1,5 +1,17 @@
-import { Component, createInjectToken, Ds, effect, input, model, provide, signal } from 'ds-core';
+import {
+  Component,
+  computed,
+  createInjectToken,
+  Ds,
+  inject,
+  input,
+  model,
+  provide,
+  signal,
+} from 'ds-core';
 import { Mask } from 'ds-headless';
+import { formInjectToken } from '../form/form';
+import { SelectOption } from './model';
 
 import style from './select.scss';
 
@@ -25,15 +37,27 @@ export const selectInjectToken = createInjectToken('select');
   `,
 })
 export class DsSelect extends HTMLElement {
-  static get observedAttributes() {
-    return ['size'];
-  }
-
   $value = model(undefined);
 
   $placeholder = input('', { alias: 'placeholder' });
 
+  $size = input(null, { alias: 'size' });
+
   $open = signal(false);
+
+  $formCtx = signal();
+
+  optionList = signal([]);
+
+  $_size = computed(() => {
+    console.log(this.$size() || this.$formCtx()?.$size() || 'md');
+    return this.$size() || this.$formCtx()?.$size() || 'md';
+  });
+
+  $_value = computed(() => {
+    const option = this.optionList().find((opt) => opt.value === this.$value());
+    return option ? option.label : this.$value();
+  });
 
   mask: Mask;
 
@@ -47,10 +71,16 @@ export class DsSelect extends HTMLElement {
 
   connectedCallback() {
     this.classList.add('ds-select');
+
+    this.$formCtx.set(inject.call(this, formInjectToken));
   }
 
   handleClick() {
     this.$open.set(true);
+  }
+
+  registerOption(option: SelectOption) {
+    this.optionList.set([...this.optionList(), option]);
   }
 
   handleChange() {}
@@ -63,9 +93,9 @@ export class DsSelect extends HTMLElement {
 
   render() {
     return (
-      <div className="select-group">
+      <div className={`select-group ${this.$_size() ? 'select-group-' + this.$_size() : ''}`}>
         <input
-          value={this.$value()}
+          value={this.$_value()}
           onInput={this.handleChange}
           onClick={this.handleClick}
           placeholder={this.$placeholder()}

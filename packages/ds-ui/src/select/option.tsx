@@ -1,4 +1,4 @@
-import { Component, Ds, effect, inject, input, signal } from 'ds-core';
+import { Component, computed, Ds, inject, input, signal } from 'ds-core';
 
 import style from './option.scss';
 import { selectInjectToken } from './select';
@@ -16,6 +16,8 @@ export class DsOption extends HTMLElement {
 
   $dsSelectInstance = signal();
 
+  $_size = computed(() => this.$dsSelectInstance()?.$_size() || 'md');
+
   constructor() {
     super();
   }
@@ -24,6 +26,11 @@ export class DsOption extends HTMLElement {
     this.classList.add('ds-option');
 
     this.$dsSelectInstance.set(inject.call(this, selectInjectToken).instance);
+
+    this.$dsSelectInstance().registerOption({
+      label: this.textContent,
+      value: this.$value(),
+    });
   }
 
   handleClick() {
@@ -32,7 +39,10 @@ export class DsOption extends HTMLElement {
 
   render() {
     return (
-      <div className="select-option" onClick={this.handleClick}>
+      <div
+        className={`select-option ${this.$_size() ? 'select-option-' + this.$_size() : ''}`}
+        onClick={this.handleClick}
+      >
         <slot></slot>
       </div>
     );

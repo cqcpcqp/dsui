@@ -6,6 +6,14 @@
   &:hover {
     background-color: $bg-hover;
   }
+
+  &-sm {
+    font-size: $font-sm;
+  }
+
+  &-lg {
+    font-size: $font-base;
+  }
 }
 
 :host * {
