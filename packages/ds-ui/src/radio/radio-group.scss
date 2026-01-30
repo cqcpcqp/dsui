@@ -1,0 +1,63 @@
+@import '../styles/util.scss';
+
+:host {
+  display: inline-flex;
+  gap: $margin-lg;
+}
+
+:host * {
+  box-sizing: border-box;
+}
+
+.radio-slider-track {
+  opacity: 0;
+}
+
+// Button 类型 - 按钮组样式
+:host(.ds-radio-group-button) {
+  gap: 0;
+
+  // 第一个 item：左圆角 + 去掉负 margin
+  ::slotted(ds-radio-item:first-of-type) {
+    --radio-item-radius-tl: #{$radius-md};
+    --radio-item-radius-bl: #{$radius-md};
+    --radio-item-margin-left: 0;
+  }
+
+  // 最后一个 item：右圆角
+  ::slotted(ds-radio-item:last-of-type) {
+    --radio-item-radius-tr: #{$radius-md};
+    --radio-item-radius-br: #{$radius-md};
+  }
+}
+
+// Slider 类型 - 滑动选择器样式
+:host(.ds-radio-group-slider) {
+  position: relative;
+  gap: 0;
+  padding: 0 $padding-xsm;
+  background-color: $bg-main;
+  border-radius: $radius-md;
+
+  .radio-slider-track {
+    display: block;
+    position: absolute;
+    top: $padding-xsm;
+    bottom: $padding-xsm;
+    left: 0;
+    width: 0;
+    background-color: white;
+    border-radius: $radius-md;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.2s ease;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 0;
+  }
+
+  ::slotted(ds-radio-item) {
+    position: relative;
+    z-index: 1;
+  }
+}

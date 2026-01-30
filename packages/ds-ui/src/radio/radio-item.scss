@@ -1,25 +1,36 @@
 @import '../styles/util.scss';
 
+$input-sm: 14px;
+$input-md: 16px;
+$input-lg: 18px;
+
+$input-after-sm: 8px;
+$input-after-md: 10px;
+$input-after-lg: 12px;
+
 .radio-item {
   display: inline-flex;
   align-items: center;
   cursor: pointer;
   font-size: $font-md;
-  line-height: $line-md;
-  color: #060a26;
+  color: $text-default;
+  height: $line-xlg;
 
   input[type='radio'] {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 16px;
-    height: 16px;
+    width: $input-md;
+    height: $input-md;
     border: 1px solid $border-default;
     border-radius: 50%;
+    margin: 0;
     margin-right: $margin-sm;
     position: relative;
     outline: none;
     cursor: pointer;
     transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
 
   input[type='radio']::after {
@@ -27,8 +38,8 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 8px;
-    height: 8px;
+    width: $input-after-md;
+    height: $input-after-md;
     background-color: $brand-primary;
     border-radius: 50%;
     transform: translate(-50%, -50%) scale(0);
@@ -45,7 +56,6 @@
 
   input[type='radio']:focus-visible {
     border-color: $border-primary;
-    box-shadow: 0 0 0 3px rgba($brand-primary, 0.2);
   }
 
   &:hover input[type='radio'] {
@@ -54,6 +64,103 @@
 
   &:focus-within input[type='radio'] {
     border-color: $border-primary;
-    box-shadow: 0 0 0 3px rgba($brand-primary, 0.2);
+  }
+
+  &-sm {
+    height: calc($line-base + 2px);
+    font-size: $font-sm;
+
+    input[type='radio'] {
+      width: $input-sm;
+      height: $input-sm;
+    }
+
+    input[type='radio']::after {
+      width: $input-after-sm;
+      height: $input-after-sm;
+    }
+  }
+
+  &-lg {
+    height: calc($line-xlg + 8px);
+    font-size: $font-base;
+
+    input[type='radio'] {
+      width: $input-lg;
+      height: $input-lg;
+    }
+
+    input[type='radio']::after {
+      width: $input-after-lg;
+      height: $input-after-lg;
+    }
+  }
+
+  &-button {
+    position: relative;
+    padding: 0 $padding-md;
+    margin: 0 0 0 var(--radio-item-margin-left, -1px); // 负 margin 让相邻边框重叠
+    border: 1px solid $border-default;
+    border-radius: var(--radio-item-radius-tl, 0) var(--radio-item-radius-tr, 0)
+      var(--radio-item-radius-br, 0) var(--radio-item-radius-bl, 0);
+    transition: all 0.2s ease-in-out;
+    z-index: 0;
+
+    input[type='radio'] {
+      display: none;
+    }
+
+    &:hover {
+      background-color: $bg-hover;
+      z-index: 1; // hover 时提升层级
+    }
+
+    &.radio-item-checked {
+      background-color: $brand-primary;
+      color: $text-reverse;
+      border-color: $brand-primary;
+      z-index: 2; // 选中时层级最高，边框显示在上面
+    }
+  }
+
+  &-button#{&}-sm {
+    padding: 0 $padding-sm;
+    font-size: $font-sm;
+  }
+
+  &-button#{&}-lg {
+    padding: 0 $padding-lg;
+    font-size: $font-base;
+  }
+
+  // Slider 类型
+  &-slider {
+    position: relative;
+    padding: 0 $padding-md;
+    margin: 0;
+    border-radius: $radius-sm;
+    transition: color 0.2s ease-in-out;
+
+    input[type='radio'] {
+      display: none;
+    }
+  }
+
+  &-slider#{&}-sm {
+    padding: 0 $padding-sm;
+    font-size: $font-sm;
+  }
+
+  &-slider#{&}-lg {
+    padding: 0 $padding-lg;
+    font-size: $font-base;
+  }
+}
+
+:host {
+  display: inline-flex;
+
+  * {
+    box-sizing: border-box;
   }
 }

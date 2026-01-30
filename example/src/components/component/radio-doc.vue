@@ -2,7 +2,9 @@
 import { ref } from 'vue';
 
 const value = ref('apple');
-const items = ref(['apple', 'orange']);
+const size = ref('md');
+const items = ref(['apple', 'orange', 'pineapple']);
+const sizeList = ref(['sm', 'md', 'lg']);
 </script>
 
 <template>
@@ -12,15 +14,27 @@ const items = ref(['apple', 'orange']);
     <p>单选</p>
 
     <ds-flex :direction="'column'" gap="20px">
-      <ds-radio-group v-model="value">
+      <ds-radio-group v-model="size">
+        <ds-radio-item v-for="s in sizeList" :value="s">{{ s }}</ds-radio-item>
+      </ds-radio-group>
+
+      <ds-radio-group v-model="value" name="radio-name" :size="size">
+        <ds-radio-item v-for="_ in items" :value="_">{{ _ }}</ds-radio-item>
+      </ds-radio-group>
+
+      <ds-radio-group v-model="value" name="radio-name2" type="button" :size="size">
+        <ds-radio-item v-for="_ in items" :value="_">{{ _ }}</ds-radio-item>
+      </ds-radio-group>
+
+      <ds-radio-group v-model="value" name="radio-name2" type="slider" :size="size">
         <ds-radio-item v-for="_ in items" :value="_">{{ _ }}</ds-radio-item>
       </ds-radio-group>
     </ds-flex>
 
     <p>以下为原生 选择功能</p>
-    <input type="radio" id="html" name="apple" value="apple" v-model="value" />
+    <input type="radio" id="html" name="fr" value="apple" v-model="value" />
     <label for="html">apple</label><br />
-    <input type="radio" id="css" name="orange" value="orange" v-model="value" />
+    <input type="radio" id="css" name="fr" value="orange" v-model="value" />
     <label for="orange">orange</label><br />
 
     <input type="radio" id="zh" name="language" value="zh" />

@@ -1,13 +1,21 @@
 <script setup>
 import { ref } from 'vue';
-const sizeList = ref(['sm', 'md', 'lg']);
+const sizeList = ref([{
+  value: 'sm',
+  label: 'Small'
+}, {
+  value: 'md',
+  label: 'Medium'
+}, {
+  value: 'lg',
+  label: 'Large'
+}]);
 const size = ref('md');
 let showExtra = ref(false);
 let labelFlex = ref(1);
 let inputFlex = ref(4);
 let placeholder = ref('Please Select')
-
-let lab = ref('1')
+let layout = ref('horizontal');
 
 const switchFlex = () => {
   [labelFlex.value, inputFlex.value] = [inputFlex.value, labelFlex.value];
@@ -21,8 +29,14 @@ const switchFlex = () => {
     <ds-flex direction="column" gap="20px">
       <h2>使用</h2>
 
-      <ds-radio-group v-model="size">
-        <ds-radio-item v-for="s in sizeList" :value="s">{{ s }}</ds-radio-item>
+      <ds-radio-group v-model="size" type="slider">
+        <ds-radio-item v-for="s in sizeList" :value="s.value">{{ s.label }}</ds-radio-item>
+      </ds-radio-group>
+
+      <ds-radio-group v-model="layout" type="slider">
+        <ds-radio-item value="horizontal">Horizontal</ds-radio-item>
+        <ds-radio-item value="vertical">Vertical</ds-radio-item>
+        <ds-radio-item value="inline">Inline</ds-radio-item>
       </ds-radio-group>
 
       <ds-form :labelFlex="labelFlex" :inputFlex="inputFlex" :size="size">

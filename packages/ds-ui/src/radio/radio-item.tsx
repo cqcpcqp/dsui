@@ -1,4 +1,4 @@
-import { Component, computed, Ds, effect, inject, input, signal } from 'ds-core';
+import { Component, computed, Ds, inject, input, signal } from 'ds-core';
 import { radioGroupInjectToken } from './radio-group';
 
 import style from './radio-item.scss';
@@ -8,17 +8,19 @@ import style from './radio-item.scss';
   style,
 })
 export class DsRadioItem extends HTMLElement {
-  static get observedAttributes() {
-    return ['size'];
-  }
-
   $value = input('', { alias: 'value' });
 
   $radioCtx = signal();
 
-  $checked = computed(() => {
-    return this.$radioCtx()?.$value() === this.$value();
-  });
+  $formCtx = signal();
+
+  $size = computed(() => this.$radioCtx()?.$size?.());
+
+  $checked = computed(() => this.$radioCtx()?.$value() === this.$value());
+
+  $name = computed(() => this.$radioCtx()?.$name());
+
+  $type = computed(() => this.$radioCtx()?.$type?.());
 
   constructor() {
     super();
@@ -28,6 +30,12 @@ export class DsRadioItem extends HTMLElement {
     this.classList.add('ds-radio-item');
 
     this.$radioCtx.set(inject.call(this, radioGroupInjectToken));
+
+    this.$radioCtx().registerItem(this);
+  }
+
+  disconnectedCallback() {
+    this.$radioCtx().unregisterItem(this);
   }
 
   clickHandler(e) {
@@ -35,9 +43,20 @@ export class DsRadioItem extends HTMLElement {
   }
 
   render() {
+    const type = this.$type();
+    const checkedClass = this.$checked() ? ' radio-item-checked' : '';
+    const size = this.$size();
+
+    // 直接使用 host 上的 class 命名
+    const typeClass = type ? 'radio-item-' + type : '';
+    const sizeClass = size ? 'radio-item-' + size : '';
+
     return (
-      <label className="radio-item" onClick={this.clickHandler}>
-        <input type="radio" value={this.$value()} checked={this.$checked()} />
+      <label
+        className={`radio-item ${sizeClass} ${typeClass} ${checkedClass}`}
+        onClick={this.clickHandler}
+      >
+        <input name={this.$name()} type="radio" value={this.$value()} checked={this.$checked()} />
         <slot></slot>
       </label>
     );

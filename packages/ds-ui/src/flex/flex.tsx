@@ -27,7 +27,7 @@ export class DsFlex extends HTMLElement {
     this.shadowRoot.querySelector('style').textContent = `
       :host {
         display: flex;
-        align-items: ${this.getAttribute('align') || 'normal'};
+        align-items: ${this.getAttribute('align') || 'flex-start'};
         justify-content: ${this.getAttribute('justify') || 'normal'};
         gap: ${this.getAttribute('gap') || '0'};
         flex-direction: ${this.getAttribute('direction') || 'row'};
