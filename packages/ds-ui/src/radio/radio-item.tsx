@@ -1,24 +1,35 @@
-import { Component, computed, Ds, effect, inject, input, signal } from 'ds-core';
+import { Component, computed, Ds, inject, input, signal } from 'ds-core';
 import { radioGroupInjectToken } from './radio-group';
 
 import style from './radio-item.scss';
+
+/**
+ * TODO(cqcpcqp)
+ * button group
+ * slider group
+ * custom group
+ * 使用selection-model来做
+ * 人家还支持上下左右按钮切换呢
+ */
 
 @Component({
   select: 'ds-radio-item',
   style,
 })
 export class DsRadioItem extends HTMLElement {
-  static get observedAttributes() {
-    return ['size'];
-  }
-
   $value = input('', { alias: 'value' });
 
   $radioCtx = signal();
 
-  $checked = computed(() => {
-    return this.$radioCtx()?.$value() === this.$value();
-  });
+  $formCtx = signal();
+
+  $size = computed(() => this.$radioCtx()?.$size());
+
+  $checked = computed(() => this.$radioCtx()?.$value() === this.$value());
+
+  $name = computed(() => this.$radioCtx()?.$name());
+
+  $type = computed(() => this.$radioCtx()?.$type());
 
   constructor() {
     super();
@@ -35,9 +46,16 @@ export class DsRadioItem extends HTMLElement {
   }
 
   render() {
+    const typeClass = this.$type() ? 'radio-item-' + this.$type() : '';
+    const checkedClass = this.$checked() ? ' radio-item-checked' : '';
+    const sizeClass = this.$size() ? 'radio-item-' + this.$size() : '';
+
     return (
-      <label className="radio-item" onClick={this.clickHandler}>
-        <input type="radio" value={this.$value()} checked={this.$checked()} />
+      <label
+        className={`radio-item ${sizeClass} ${typeClass} ${checkedClass}`}
+        onClick={this.clickHandler}
+      >
+        <input name={this.$name()} type="radio" value={this.$value()} checked={this.$checked()} />
         <slot></slot>
       </label>
     );

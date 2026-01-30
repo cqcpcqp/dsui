@@ -1,4 +1,14 @@
-import { Component, createInjectToken, model, provide } from 'ds-core';
+import {
+  Component,
+  computed,
+  createInjectToken,
+  inject,
+  input,
+  model,
+  provide,
+  signal,
+} from 'ds-core';
+import { formInjectToken } from '../form/form';
 
 import style from './radio-group.scss';
 
@@ -10,21 +20,38 @@ export const radioGroupInjectToken = createInjectToken('radio-group');
   template: `<slot></slot>`,
 })
 export class DsRadioGroup extends HTMLElement {
-  static get observedAttributes() {
-    return ['size'];
-  }
-
   $value = model();
+
+  $size = input(null, { alias: 'size' });
+
+  $name = input(null, { alias: 'name' });
+
+  $type = input('text', { alias: 'type' });
+
+  $formCtx = signal();
+
+  $_size = computed(() => this.$size() || this.$formCtx()?.$size() || 'md');
 
   constructor() {
     super();
 
     provide.call(this, radioGroupInjectToken, {
       $value: this.$value,
+      $size: this.$_size,
+      $name: this.$name,
+      $type: this.$type,
     });
   }
 
   connectedCallback() {
     this.classList.add('ds-radio-group');
+
+    // 根据 type 添加对应 class
+    const type = this.$type();
+    if (type && type !== 'text') {
+      this.classList.add(`ds-radio-group-${type}`);
+    }
+
+    this.$formCtx.set(inject.call(this, formInjectToken));
   }
 }

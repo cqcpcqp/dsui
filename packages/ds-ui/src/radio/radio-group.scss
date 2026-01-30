@@ -1,0 +1,33 @@
+@import '../styles/util.scss';
+
+:host {
+  display: inline-flex;
+  gap: $margin-lg;
+}
+
+// Button 类型 - 按钮组样式
+:host(.ds-radio-group-button) {
+  gap: 0;
+
+  // 第一个 item：左圆角 + 去掉负 margin
+  ::slotted(ds-radio-item:first-of-type) {
+    --radio-item-radius-tl: #{$radius-md};
+    --radio-item-radius-bl: #{$radius-md};
+    --radio-item-margin-left: 0;
+  }
+
+  // 最后一个 item：右圆角
+  ::slotted(ds-radio-item:last-of-type) {
+    --radio-item-radius-tr: #{$radius-md};
+    --radio-item-radius-br: #{$radius-md};
+  }
+}
+
+// Slider 类型 - 滑动选择器样式
+:host(.ds-radio-group-slider) {
+  position: relative;
+  gap: 0;
+  padding: $padding-xsm;
+  background-color: $bg-body;
+  border-radius: $radius-md;
+}

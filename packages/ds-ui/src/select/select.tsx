@@ -49,10 +49,7 @@ export class DsSelect extends HTMLElement {
 
   optionList = signal([]);
 
-  $_size = computed(() => {
-    console.log(this.$size() || this.$formCtx()?.$size() || 'md');
-    return this.$size() || this.$formCtx()?.$size() || 'md';
-  });
+  $_size = computed(() => this.$size() || this.$formCtx()?.$size() || 'md');
 
   $_value = computed(() => {
     const option = this.optionList().find((opt) => opt.value === this.$value());

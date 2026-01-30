@@ -1,0 +1,1 @@
+export type RadioType = 'text' | 'button' | 'slider';
